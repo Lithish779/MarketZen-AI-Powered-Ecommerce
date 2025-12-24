@@ -106,4 +106,4 @@
 <div align="center">
   <p>Built with ❤️ for a better shopping experience.</p>
   <b><a href="https://github.com/Lithish779/Ecommerce">GitHub Repo</a> • <a href="https://ecommerce-taupe-omega-29.vercel.app/">Live Demo</a></b>
-</div>
+</div>
