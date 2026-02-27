@@ -64,10 +64,19 @@ dotenv.config();
 const app = express();
 
 /* ================= MIDDLEWARE ================= */
+// app.use(
+//   cors({
+//     origin: "*", // tighten later in prod
+//     credentials: true,
+//   })
+// );
 app.use(
   cors({
-    origin: "*", // tighten later in prod
+    origin: [
+      "https://your-frontend-name.vercel.app"
+    ],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 app.use(express.json());
