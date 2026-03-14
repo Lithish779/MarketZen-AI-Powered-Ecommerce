@@ -67,7 +67,50 @@ router.post("/signup/send-otp", async (req, res) => {
   }
 });
 
-/* ================= VERIFY OTP + SIGNUP ================= */
+/* ================= DIRECT SIGNUP (NO OTP) ================= */
+router.post("/signup", async (req, res) => {
+  try {
+    const { name, contact, password, role } = req.body;
+
+    if (!name || !contact || !password) {
+      return res.status(400).json({ msg: "All fields are required" });
+    }
+
+    const exists = await User.findOne({ email: contact });
+    if (exists) {
+      return res.status(400).json({ msg: "User already exists" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const allowedRoles = ["customer", "admin", "manager", "vendor"];
+    const finalRole = allowedRoles.includes(role) ? role : "customer";
+
+    const newUser = await User.create({
+      name,
+      email: contact,
+      password: hashedPassword,
+      isVerified: true, // Auto-verified since we removed OTP
+      provider: "local",
+      role: finalRole,
+    });
+
+    res.json({ 
+      msg: "Signup successful",
+      user: {
+        _id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role
+      }
+    });
+  } catch (err) {
+    console.error("🔥 Signup Error:", err);
+    res.status(500).json({ msg: "Signup failed", error: err.message });
+  }
+});
+
+/* ================= VERIFY OTP + SIGNUP (OLD - CAN BE REMOVED LATER) ================= */
 router.post("/signup/verify-otp", async (req, res) => {
   try {
     const { name, contact, password, otp, role } = req.body;

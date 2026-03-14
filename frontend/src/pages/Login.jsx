@@ -95,36 +95,25 @@ export default function Login() {
     setStep(2); // Role selection
   };
 
-  const sendSignupOtp = async () => {
+  const handleSignup = async () => {
     try {
-      await API.post("/auth/signup/send-otp", {
-        contact: form.contact,
-      });
-      loginToast("Verification code dispatched");
-      setStep(3); // OTP entry
-    } catch (err) {
-      const msg = err.response?.data?.msg || "Dispatch Failed";
-      loginToast(msg);
-    }
-  };
-
-  const verifySignupOtp = async () => {
-    try {
-      await API.post("/auth/signup/verify-otp", {
+      const res = await API.post("/auth/signup", {
         name: form.name,
         contact: form.contact,
         password: form.password,
         role: form.role,
-        otp,
       });
 
       loginToast("Account Curated Successfully");
       switchMode("login");
     } catch (err) {
-      const msg = err.response?.data?.msg || "Invalid Verification Code";
+      const msg = err.response?.data?.msg || "Signup Failed";
       loginToast(msg);
     }
   };
+
+  // Removed verifySignupOtp as it is no longer needed for direct signup flow
+
 
   const RoleSelector = () => (
     <div className="grid grid-cols-2 gap-4 mt-6 mb-8">
@@ -275,19 +264,13 @@ export default function Login() {
                 <h2 className="text-xl font-light text-slate-800 mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Define your Identity</h2>
                 <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-6">Joining the MarketZen Ecosystem</p>
                 <RoleSelector />
-                <button onClick={sendSignupOtp} className="boutique-btn">Verify as {form.role}</button>
+                <button onClick={handleSignup} className="boutique-btn">Complete Registration as {form.role}</button>
                 <button onClick={() => setStep(1)} className="w-full mt-6 text-[10px] font-bold text-gray-300 uppercase tracking-widest">Return to Details</button>
               </>
             )}
 
-            {mode === "signup" && step === 3 && (
-              <>
-                <p className="mb-8 text-sm text-slate-500 font-medium leading-relaxed italic">A verification essence has been sent to <b>{form.contact}</b></p>
-                <input placeholder="Verification Code" onChange={(e) => setOtp(e.target.value)} className="boutique-input text-center text-lg tracking-[0.5em]" />
-                <button onClick={verifySignupOtp} className="boutique-btn">Complete Acquisition</button>
-                <button onClick={() => setStep(2)} className="w-full mt-6 text-[10px] font-bold text-gray-300 uppercase tracking-widest">Adjust Role</button>
-              </>
-            )}
+            {/* Step 3 (OTP) removed for direct signup flow */}
+
 
             {mode === "forgot" && step === 1 && (
               <>
