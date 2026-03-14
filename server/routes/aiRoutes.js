@@ -23,6 +23,17 @@ function fileToGenerativePart(filePath, mimeType) {
   };
 }
 
+/* ================= DEBUG MODELS ================= */
+router.get("/debug-models", async (req, res) => {
+  try {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${process.env.GEMINI_API_KEY || "AIzaSyDgDo-fnEoJn-lNe0Oe817076eh5qRl6d8"}`);
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 /* ================= AI BEAUTY ASSISTANT ================= */
 router.post("/chat", async (req, res) => {
   const { message, userId, history = [] } = req.body;
