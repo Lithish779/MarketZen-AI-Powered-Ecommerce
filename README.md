@@ -1,4 +1,4 @@
-# 🛍️ MarketZen — Boutique Luxury E-Commerce
+# 🛍️ MarketZen — Boutique Luxury AI Powered E-Commerce
 
 <div align="center">
   <img src="frontend/src/assets/logo.png" alt="MarketZen Logo" width="120" />
