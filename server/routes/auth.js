@@ -1,7 +1,7 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import { OAuth2Client } from "google-auth-library";
 
 import User from "../models/user.js";
@@ -14,6 +14,8 @@ const router = express.Router();
 const googleClient = new OAuth2Client(
   "192818920134-btagci97kjs33o5pjfpi380urt5a4c88.apps.googleusercontent.com"
 );
+
+const resend = new Resend(process.env.RESEND_API_KEY || "re_ZHPs7iCd_HcRxsdDpoEfhN2eZWUtbnsUL");
 
 /* ================= SEND OTP (SIGNUP) ================= */
 router.post("/signup/send-otp", async (req, res) => {
@@ -40,44 +42,21 @@ router.post("/signup/send-otp", async (req, res) => {
       expiresAt: new Date(Date.now() + 10 * 60 * 1000), // Increased to 10 mins
     });
 
-    console.log(`[AUTH] Attempting OTP send to ${contact}. Credentials: ${process.env.EMAIL_USER ? 'Present' : 'MISSING'}`);
-
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true, // Use SSL/TLS
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false // Increase resilience to cert issues
-      },
-      connectionTimeout: 30000, // 30 seconds
-      greetingTimeout: 30000,
-      socketTimeout: 30000,
-      logger: true,
-      debug: true
-    });
+    console.log(`[AUTH] Attempting OTP send to ${contact} via Resend.`);
 
     try {
-      await transporter.sendMail({
+      await resend.emails.send({
+        from: "MarketZen <onboarding@resend.dev>",
         to: contact,
         subject: "Signup OTP",
         text: `Your OTP is ${otp}. Valid for 10 minutes.`,
       });
-      console.log(`[AUTH] OTP sent successfully to ${contact}`);
+      console.log(`[AUTH] OTP sent successfully to ${contact} via Resend`);
     } catch (mailErr) {
-      console.error("🔥 Email sending failed:", mailErr.message);
-      
-      let errorMsg = "Failed to send OTP email.";
-      if (mailErr.code === 'EAUTH') {
-        errorMsg += " SMTP Authentication failed. Please check your EMAIL_USER and EMAIL_PASS (App Password) in .env.";
-      }
-      
+      console.error("🔥 Resend API failed:", mailErr.message);
       return res.status(500).json({ 
-        msg: errorMsg,
-        error_code: mailErr.code 
+        msg: "Failed to send OTP via Resend API",
+        error: mailErr.message 
       });
     }
 
@@ -253,44 +232,21 @@ router.post("/forgot-password/send-otp", async (req, res) => {
       expiresAt: new Date(Date.now() + 2 * 60 * 1000),
     });
 
-    console.log(`[AUTH] Attempting Password Reset OTP to ${email}. Credentials: ${process.env.EMAIL_USER ? 'Present' : 'MISSING'}`);
-
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false
-      },
-      connectionTimeout: 30000,
-      greetingTimeout: 30000,
-      socketTimeout: 30000,
-      logger: true,
-      debug: true
-    });
+    console.log(`[AUTH] Attempting Password Reset OTP to ${email} via Resend.`);
 
     try {
-      await transporter.sendMail({
+      await resend.emails.send({
+        from: "MarketZen <onboarding@resend.dev>",
         to: email,
         subject: "Reset Password OTP",
         text: `Your OTP is ${otp}. Valid for 2 minutes.`,
       });
-      console.log(`[AUTH] Reset OTP sent successfully to ${email}`);
+      console.log(`[AUTH] Reset OTP sent successfully to ${email} via Resend`);
     } catch (mailErr) {
-      console.error("🔥 Reset email failed:", mailErr.message);
-      
-      let errorMsg = "Failed to send Reset OTP email.";
-      if (mailErr.code === 'EAUTH') {
-        errorMsg += " SMTP Authentication failed. Please check your EMAIL_USER and EMAIL_PASS (App Password) in .env.";
-      }
-
+      console.error("🔥 Resend API failed:", mailErr.message);
       return res.status(500).json({ 
-        msg: errorMsg,
-        error_code: mailErr.code
+        msg: "Failed to send Reset OTP via Resend API",
+        error: mailErr.message 
       });
     }
 
