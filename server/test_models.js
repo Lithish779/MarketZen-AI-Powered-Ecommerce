@@ -21,7 +21,7 @@ function testModel(modelName) {
 }
 
 (async () => {
-    await testModel("gemini-2.5-flash");
+    await testModel("gemini-1.5-flash");
     await testModel("gemini-2.0-flash");
     await testModel("gemini-1.5-flash");
 })();

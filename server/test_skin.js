@@ -20,7 +20,7 @@ async function test() {
     const imagePart = fileToGenerativePart("dummy.jpg", "image/jpeg");
     const systemInstruction = `You are a professional AI Dermatologist. Reply JSON.`;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash", systemInstruction });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction });
     const result = await model.generateContent(["Analyze this", imagePart]);
     console.log("SUCCESS:", result.response.text());
   } catch (err) {

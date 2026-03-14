@@ -38,7 +38,7 @@ Output ONLY a JSON array of product IDs and a short "architectsNote".
 Example: {"productIds": ["id1", "id2"], "architectsNote": "A minimalist glow regimen."}
 Output ONLY the raw JSON string, NO markdown blocks, NO backticks.`;
 
-  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash", systemInstruction });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction });
   const result = await model.generateContent(`Catalog:\n${productList}\n\nUser Profile: ${skinType}, ${concerns?.join(', ')}`);
   
   let text = result.response.text();
