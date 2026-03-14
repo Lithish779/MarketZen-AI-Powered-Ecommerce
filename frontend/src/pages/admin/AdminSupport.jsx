@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import { FaPaperPlane, FaUserCircle, FaHeadset, FaSearch, FaStar } from "react-icons/fa";
 import axios from "axios";
 
-const socket = io("http://localhost:4002");
+const socket = io("https://ecommerce-x4vm.onrender.com");
 
 const AdminSupport = () => {
   const [activeUsers, setActiveUsers] = useState([]);
@@ -19,7 +19,7 @@ const AdminSupport = () => {
 
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:4002/api/admin/chat-users");
+        const res = await axios.get("https://ecommerce-x4vm.onrender.com/api/admin/chat-users");
         setActiveUsers(res.data);
       } catch (err) {
         console.error("Error fetching chat users:", err);
@@ -49,7 +49,7 @@ const AdminSupport = () => {
 
   useEffect(() => {
     if (selectedUser) {
-      axios.get(`http://localhost:4002/api/chat/${selectedUser._id}`)
+      axios.get(`https://ecommerce-x4vm.onrender.com/api/chat/${selectedUser._id}`)
         .then(res => setChat(res.data))
         .catch(err => console.error("Error fetching chat history:", err));
       

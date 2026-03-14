@@ -30,7 +30,7 @@ const SkinAnalyzer = () => {
         formData.append("image", image);
 
         try {
-            const res = await axios.post("http://localhost:4002/api/ai/analyze-skin", formData, {
+            const res = await axios.post("https://ecommerce-x4vm.onrender.com/api/ai/analyze-skin", formData, {
                 headers: { "Content-Type": "multipart/form-data" }
             });
             setResult(res.data);

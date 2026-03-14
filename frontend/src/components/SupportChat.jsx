@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import { FaComments, FaTimes, FaPaperPlane, FaHeadset } from "react-icons/fa";
 import axios from "axios";
 
-const socket = io("http://localhost:4002");
+const socket = io("https://ecommerce-x4vm.onrender.com");
 
 const SupportChat = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +20,7 @@ const SupportChat = () => {
       socket.emit("join_room", activeId);
       
       // Fetch chat history
-      axios.get(`http://localhost:4002/api/chat/${activeId}`)
+      axios.get(`https://ecommerce-x4vm.onrender.com/api/chat/${activeId}`)
         .then(res => setChat(res.data))
         .catch(err => console.error("Error fetching chat:", err));
     }
@@ -64,7 +64,7 @@ const SupportChat = () => {
           content: m.message
         }));
 
-        const res = await axios.post("http://localhost:4002/api/ai/chat", {
+        const res = await axios.post("https://ecommerce-x4vm.onrender.com/api/ai/chat", {
           message: message,
           userId: activeId,
           history: history
