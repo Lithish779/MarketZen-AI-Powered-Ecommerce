@@ -81,8 +81,9 @@ app.use(cors({
     "https://ecommerce-taupe-omega-29.vercel.app"
   ],
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 }));
+app.options("*", cors()); // Handle preflight for all routes
 app.use(express.json());
 
 // Database
