@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext, useRef } from "react";
-import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
+import { FaSearch, FaUser, FaShoppingCart, FaHeart } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import { API } from "../pages/api.jsx";
 import CartContext from "../context/CartContext.jsx";
@@ -189,7 +189,7 @@ const Navbar = () => {
                   </div>
                 </button>
                 <div className="absolute right-0 w-64 mt-4 transition-all opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-3 group-hover:translate-y-0 z-[100] scale-95 group-hover:scale-100 origin-top-right">
-                  <div className="overflow-hidden bg-white/80 backdrop-blur-2xl border border-white/40 rounded-3xl shadow-[0_30px_100px_-15px_rgba(0,0,0,0.15)] p-2 ring-1 ring-black/[0.03]">
+                  <div className="overflow-hidden bg-white border border-gray-200 rounded-3xl shadow-[0_30px_100px_-15px_rgba(0,0,0,0.15)] p-2 ring-1 ring-black/[0.03]">
                     {role === "admin" && (
                       <Link to="/admin" className="flex items-center gap-3 px-4 py-3 text-[11px] text-[#EC4899] font-bold hover:bg-[#EC4899]/5 rounded-2xl transition-all border-b border-gray-100/50 mb-1 uppercase tracking-widest">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#EC4899] animate-pulse" />
@@ -201,13 +201,14 @@ const Navbar = () => {
                     <div className="px-2 py-2">
                       <p className="text-[8px] font-bold text-gray-400 uppercase tracking-[0.3em] px-3 mb-2">Member Services</p>
                       <Link to="/profile" className="block px-4 py-2.5 text-xs text-slate-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C] rounded-xl transition-all font-medium">Personal Profile</Link>
-                      <Link to="/orders" className="block px-4 py-2.5 text-xs text-slate-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C] rounded-xl transition-all font-medium">Order Archives</Link>
-                      <Link to="/wishlist" className="block px-4 py-2.5 text-xs text-slate-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C] rounded-xl transition-all font-medium">Curated Desires</Link>
+                      <Link to="/profile" className="block px-4 py-2.5 text-xs text-slate-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C] rounded-xl transition-all font-medium">Personal Profile</Link>
+                      <Link to="/orders" className="block px-4 py-2.5 text-xs text-slate-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C] rounded-xl transition-all font-medium">My Orders</Link>
+                      <Link to="/wishlist" className="block px-4 py-2.5 text-xs text-slate-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C] rounded-xl transition-all font-medium">Wishlist</Link>
                     </div>
 
                     <div className="px-2 py-2 border-t border-gray-100/50">
                       <p className="text-[8px] font-bold text-gray-400 uppercase tracking-[0.3em] px-3 mb-2">Ecosystem</p>
-                      <Link to="/addresses" className="block px-4 py-2.5 text-xs text-slate-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C] rounded-xl transition-all font-medium">Saved Destinations</Link>
+                      <Link to="/addresses" className="block px-4 py-2.5 text-xs text-slate-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C] rounded-xl transition-all font-medium">Saved Addresses</Link>
                     </div>
 
                     <button onClick={handleLogout} className="w-full text-left px-4 py-3 mt-2 text-[10px] font-bold text-red-400 hover:bg-red-50 hover:text-red-500 rounded-2xl transition-all uppercase tracking-widest">Sign Out</button>
@@ -219,6 +220,12 @@ const Navbar = () => {
                 Join / Sign In
               </Link>
             )}
+            
+            <Link to="/wishlist" className="relative group lg:flex hidden items-center">
+              <div className="p-2.5 transition-all rounded-full bg-gray-50 text-[#EC4899] group-hover:scale-110 group-hover:bg-[#EC4899]/10 border border-gray-100">
+                <FaHeart className="text-lg" />
+              </div>
+            </Link>
 
             <Link to="/cart" className="relative group">
               <div className="p-2.5 transition-all rounded-full bg-gray-50 text-[#C9A84C] group-hover:scale-110 group-hover:bg-[#C9A84C]/10 border border-gray-100">
