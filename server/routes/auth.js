@@ -49,7 +49,7 @@ router.post("/signup/send-otp", async (req, res) => {
         from: "MarketZen <onboarding@resend.dev>",
         to: contact,
         subject: "Signup OTP",
-        text: `Your OTP is ${otp}. Valid for 10 minutes.`,
+        html: `<p>Your OTP is <strong>${otp}</strong>. Valid for 10 minutes.</p>`,
       });
       console.log(`[AUTH] OTP sent successfully to ${contact} via Resend`);
     } catch (mailErr) {
@@ -239,7 +239,7 @@ router.post("/forgot-password/send-otp", async (req, res) => {
         from: "MarketZen <onboarding@resend.dev>",
         to: email,
         subject: "Reset Password OTP",
-        text: `Your OTP is ${otp}. Valid for 2 minutes.`,
+        html: `<p>Your OTP is <strong>${otp}</strong>. Valid for 2 minutes.</p>`,
       });
       console.log(`[AUTH] Reset OTP sent successfully to ${email} via Resend`);
     } catch (mailErr) {
