@@ -40,20 +40,22 @@ router.post("/signup/send-otp", async (req, res) => {
       expiresAt: new Date(Date.now() + 10 * 60 * 1000), // Increased to 10 mins
     });
 
+    console.log(`[AUTH] Attempting OTP send to ${contact}. Credentials: ${process.env.EMAIL_USER ? 'Present' : 'MISSING'}`);
+
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 587,
-      secure: false, // use STARTTLS
+      port: 465,
+      secure: true, // Use SSL/TLS
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
       tls: {
-        rejectUnauthorized: false
+        rejectUnauthorized: false // Increase resilience to cert issues
       },
-      connectionTimeout: 20000, // 20 seconds
-      greetingTimeout: 20000,
-      socketTimeout: 20000,
+      connectionTimeout: 30000, // 30 seconds
+      greetingTimeout: 30000,
+      socketTimeout: 30000,
       logger: true,
       debug: true
     });
@@ -251,10 +253,12 @@ router.post("/forgot-password/send-otp", async (req, res) => {
       expiresAt: new Date(Date.now() + 2 * 60 * 1000),
     });
 
+    console.log(`[AUTH] Attempting Password Reset OTP to ${email}. Credentials: ${process.env.EMAIL_USER ? 'Present' : 'MISSING'}`);
+
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 587,
-      secure: false, // use STARTTLS
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -262,9 +266,9 @@ router.post("/forgot-password/send-otp", async (req, res) => {
       tls: {
         rejectUnauthorized: false
       },
-      connectionTimeout: 20000,
-      greetingTimeout: 20000,
-      socketTimeout: 20000,
+      connectionTimeout: 30000,
+      greetingTimeout: 30000,
+      socketTimeout: 30000,
       logger: true,
       debug: true
     });
