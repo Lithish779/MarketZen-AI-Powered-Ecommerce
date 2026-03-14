@@ -15,7 +15,7 @@ const googleClient = new OAuth2Client(
   "192818920134-btagci97kjs33o5pjfpi380urt5a4c88.apps.googleusercontent.com"
 );
 
-const resend = new Resend(process.env.RESEND_API_KEY || "re_ZHPs7iCd_HcRxsdDpoEfhN2eZWUtbnsUL");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 /* ================= SEND OTP (SIGNUP) ================= */
 router.post("/signup/send-otp", async (req, res) => {
