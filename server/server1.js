@@ -134,7 +134,12 @@ app.use((err, req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Credentials', 'true');
   }
-  res.status(500).json({ message: "Internal Server Error", error: err.message });
+  res.status(500).json({ 
+    message: "Internal Server Error", 
+    error: err.message,
+    code: err.code,
+    stack: process.env.NODE_ENV === 'production' ? 'hidden' : err.stack
+  });
 });
 
 const PORT = process.env.PORT || 4001;
