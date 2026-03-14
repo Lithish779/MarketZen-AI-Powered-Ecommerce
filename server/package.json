@@ -8,9 +8,12 @@
     "dev": "nodemon server1.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
     "@faker-js/faker": "^10.1.0",
+    "@google/generative-ai": "^0.24.1",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "csv-parser": "^3.2.0",
     "csvtojson": "^2.0.14",
     "dotenv": "^16.4.5",
@@ -20,7 +23,8 @@
     "mongoose": "^9.0.1",
     "multer": "^2.0.2",
     "nodemailer": "^7.0.11",
-    "razorpay": "*"
+    "razorpay": "^2.9.6",
+    "socket.io": "^4.8.3"
   },
   "devDependencies": {
     "nodemon": "^3.0.3"

@@ -4,7 +4,7 @@ export default function WhatsNew() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4001/collections/whats-new")
+    fetch("https://ecommerce-x4vm.onrender.com")
       .then(res => res.json())
       .then(data => setProducts(data))
       .catch(err => console.error(err));

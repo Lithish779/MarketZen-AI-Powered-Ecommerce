@@ -1,4 +1,5 @@
 # Logs
+
 logs
 *.log
 npm-debug.log*
@@ -7,18 +8,51 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Dependency directories
+
+node_modules/
+
+# Build output
+
+dist/
+dist-ssr/
+build/
+
+# Environment variables (CRITICAL)
+
+.env
+.env.*
 *.local
 
-# Editor directories and files
+# Uploaded files / runtime data
+
+uploads/
+tmp/
+temp/
+
+# OS files
+
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Testing / debug scripts
+
+test*.js
+test*.txt
+temp*.txt
+out.txt
+
+# Package lock duplicates inside node_modules
+
+**/node_modules/.package-lock.json

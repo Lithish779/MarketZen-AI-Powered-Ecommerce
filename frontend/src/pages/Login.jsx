@@ -4,37 +4,27 @@ import { FiUser } from "react-icons/fi";
 import { GoogleLogin } from "@react-oauth/google";
 import { API } from "./api";
 import toast from "react-hot-toast";
+import SupportChat from "../components/SupportChat";
 
 export default function Login() {
   const [mode, setMode] = useState("login");
   const [step, setStep] = useState(1);
   const [otp, setOtp] = useState("");
   const [animating, setAnimating] = useState(false);
-
   const [form, setForm] = useState({
     name: "",
     contact: "",
     password: "",
     newPassword: "",
+    role: "customer"
   });
 
-  const handleChange = (e) =>
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-  /* ================= PREMIUM TOAST ================= */
   const loginToast = (message) => {
-    toast(message, {
-      duration: 2200,
-      style: {
-        background: "#7dd3fc",
-        color: "#0f172a",
-        padding: "10px 22px",
-        borderRadius: "9999px",
-        fontSize: "14px",
-        fontWeight: 500,
-        boxShadow: "0 8px 30px rgba(0,0,0,0.18)",
-      },
-    });
+    toast(message); // Uses the global premium toast config we set in App.jsx
   };
 
   /* ================= MODE SWITCH ================= */
@@ -50,7 +40,7 @@ export default function Login() {
   /* ================= EMAIL LOGIN ================= */
   const handleLogin = async () => {
     if (!form.contact || !form.password) {
-      loginToast("Email and password required");
+      loginToast("Credentials required");
       return;
     }
 
@@ -63,47 +53,55 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.user.name);
       localStorage.setItem("userId", res.data.user._id);
+      localStorage.setItem("role", res.data.user.role);
 
-      loginToast("Welcome back");
+      loginToast("Welcome to MarketZen");
       window.location.href = "/";
     } catch {
-      loginToast("Invalid credentials");
+      loginToast("Access Denied: Invalid Credentials");
     }
   };
 
   /* ================= GOOGLE LOGIN ================= */
+  const [showGoogleBtn, setShowGoogleBtn] = useState(false);
+
   const handleGoogleLogin = async (credential) => {
     try {
       const res = await API.post("/auth/google", {
         token: credential,
+        role: form.role,
       });
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.user.name);
       localStorage.setItem("userId", res.data.user._id);
+      localStorage.setItem("role", res.data.user.role);
 
-      loginToast("Logged in with Google");
+      loginToast("Aesthetic Entry: Google Verified");
       window.location.href = "/";
     } catch {
-      loginToast("Google login failed");
+      loginToast("Google Authentication Failed");
     }
   };
 
   /* ================= SIGNUP ================= */
-  const sendSignupOtp = async () => {
+  const nextToRole = () => {
     if (!form.name || !form.contact || !form.password) {
-      loginToast("All fields required");
+      loginToast("All details are essential");
       return;
     }
+    setStep(2); // Role selection
+  };
 
+  const sendSignupOtp = async () => {
     try {
       await API.post("/auth/signup/send-otp", {
         contact: form.contact,
       });
-      loginToast("OTP sent");
-      setStep(2);
+      loginToast("Verification code dispatched");
+      setStep(3); // OTP entry
     } catch {
-      loginToast("Failed to send OTP");
+      loginToast("Dispatch Failed");
     }
   };
 
@@ -113,20 +111,39 @@ export default function Login() {
         name: form.name,
         contact: form.contact,
         password: form.password,
+        role: form.role,
         otp,
       });
 
-      loginToast("Account created");
+      loginToast("Account Curated Successfully");
       switchMode("login");
     } catch {
-      loginToast("Invalid OTP");
+      loginToast("Invalid Verification Code");
     }
   };
+
+  const RoleSelector = () => (
+    <div className="grid grid-cols-2 gap-4 mt-6 mb-8">
+      {["customer", "admin", "manager", "vendor"].map((r) => (
+        <div
+          key={r}
+          onClick={() => setForm({ ...form, role: r })}
+          className={`px-4 py-3.5 rounded-2xl border transition-all duration-500 text-center capitalize text-[10px] font-bold tracking-[0.2em] cursor-pointer ${
+            form.role === r
+              ? "bg-slate-900 border-slate-900 text-[#C9A84C] shadow-2xl shadow-slate-200"
+              : "bg-white border-gray-100 text-gray-400 hover:border-[#FBCFE8]"
+          }`}
+        >
+          {r}
+        </div>
+      ))}
+    </div>
+  );
 
   /* ================= FORGOT PASSWORD ================= */
   const sendResetOtp = async () => {
     if (!form.contact) {
-      loginToast("Email required");
+      loginToast("Email is required");
       return;
     }
 
@@ -134,16 +151,16 @@ export default function Login() {
       await API.post("/auth/forgot-password/send-otp", {
         email: form.contact,
       });
-      loginToast("OTP sent");
+      loginToast("Code sent");
       setStep(2);
     } catch {
-      loginToast("OTP failed");
+      loginToast("Request failed");
     }
   };
 
   const resetPassword = async () => {
     if (!otp || !form.newPassword) {
-      loginToast("All fields required");
+      loginToast("All fields are required");
       return;
     }
 
@@ -154,150 +171,226 @@ export default function Login() {
         newPassword: form.newPassword,
       });
 
-      loginToast("Password reset");
+      loginToast("Credentials updated");
       switchMode("login");
     } catch {
-      loginToast("Invalid OTP");
+      loginToast("Update failed");
     }
   };
 
   const rightTitle =
     mode === "signup"
-      ? "WELCOME TO SIGN UP"
+      ? "Join MarketZen"
       : mode === "forgot"
-      ? "RESET ACCESS"
-      : "WELCOME BACK";
+      ? "Restore Access"
+      : "Welcome Back";
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#071019]">
-      <div className="relative p-[2px] rounded-2xl border border-cyan-400/30 shadow-[0_0_45px_rgba(6,182,212,0.12)]">
-        <div className="flex overflow-hidden rounded-2xl bg-gradient-to-r from-[#071225] via-[#071125] to-[#081124]">
+    <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA] p-6">
+      <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none overflow-hidden">
+         <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#FBCFE8] rounded-full blur-[120px]" />
+         <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#C9A84C] rounded-full blur-[120px]" />
+      </div>
 
-          {/* LEFT PANEL */}
-          <div className={`w-[520px] p-12 text-white transition-all duration-300
-            ${animating ? "opacity-0 -translate-x-6" : "opacity-100 translate-x-0"}`}>
+      <div className="relative w-full max-w-5xl bg-white rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.06)] overflow-hidden border border-white flex flex-col md:flex-row">
+        
+        {/* LEFT PANEL: AUTH FORM */}
+        <div className={`flex-1 p-12 lg:p-16 transition-all duration-700 ${animating ? "opacity-0 translate-y-10" : "opacity-100 translate-y-0"}`}>
+          <div className="mb-12">
+            <h1 className="text-5xl font-light text-slate-900 mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>{mode}</h1>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Accessing the Boutique Collection</p>
+          </div>
 
-            <h1 className="mb-6 text-4xl font-extrabold tracking-tight capitalize">{mode}</h1>
-
+          <div className="space-y-6">
             {mode === "login" && (
               <>
-                <label className="block mb-1 text-sm text-slate-400">Email</label>
-                <input name="contact" placeholder="Enter your email" onChange={handleChange} className="input" />
-
-                <label className="block mt-3 mb-1 text-sm text-slate-400">Password</label>
-                <input name="password" type="password" placeholder="Enter your password" onChange={handleChange} className="input" />
-
-                <button onClick={handleLogin} className="btn">Login</button>
-
-                {/* GOOGLE LOGIN */}
-                <div className="flex justify-start mt-5">
-                  <div className="google-wrap">
-                    <GoogleLogin
-                      onSuccess={(res) => handleGoogleLogin(res.credential)}
-                      onError={() => loginToast("Google login failed")}
-                      theme="filled_black"
-                      shape="pill"
-                    />
-                  </div>
+                <div className="space-y-1.5">
+                  <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest ml-4">Email Destination</label>
+                  <input name="contact" placeholder="Email Address" onChange={handleChange} className="boutique-input" />
                 </div>
 
-                <p className="mt-4 link" onClick={() => switchMode("forgot")}>
-                  Forgot password?
+                <div className="space-y-1.5">
+                  <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest ml-4">Secure Key</label>
+                  <input name="password" type="password" placeholder="Password" onChange={handleChange} className="boutique-input" />
+                </div>
+
+                <button onClick={handleLogin} className="boutique-btn">Begin Journey</button>
+
+                {/* GOOGLE LOGIN REDESIGN */}
+                <div className="mt-12 pt-10 border-t border-gray-50 flex flex-col items-center">
+                  {!showGoogleBtn ? (
+                    <button 
+                      onClick={() => setShowGoogleBtn(true)}
+                      className="group flex items-center gap-4 bg-white border border-gray-100 px-10 py-5 rounded-2xl transition-all hover:border-[#FBCFE8] hover:shadow-xl hover:shadow-gray-100"
+                    >
+                       <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" className="w-5 h-5" />
+                       <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 group-hover:text-slate-900 transition-colors">Authenticate with Google</span>
+                    </button>
+                  ) : (
+                    <div className="w-full animate-in fade-in duration-700 slide-in-from-bottom-5">
+                      <p className="text-[9px] font-bold text-[#C9A84C] uppercase tracking-[0.3em] text-center mb-6">Select your Identity Role</p>
+                      <RoleSelector />
+                      <div className="flex justify-center">
+                        <GoogleLogin
+                          onSuccess={(res) => handleGoogleLogin(res.credential)}
+                          onError={() => loginToast("Authentication Failed")}
+                          theme="outline"
+                          shape="pill"
+                          width="300"
+                        />
+                      </div>
+                      <button 
+                        onClick={() => setShowGoogleBtn(false)}
+                        className="w-full mt-8 text-[9px] font-bold text-gray-300 hover:text-red-400 uppercase tracking-[0.2em] transition-colors"
+                      >
+                        Abandon Authentication
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                <p className="mt-8 text-[10px] font-bold text-[#C9A84C] uppercase tracking-widest text-center cursor-pointer hover:text-slate-900 transition-colors" onClick={() => switchMode("forgot")}>
+                  Forgot Credentials?
                 </p>
               </>
             )}
 
             {mode === "signup" && step === 1 && (
               <>
-                <input name="name" placeholder="Full Name" onChange={handleChange} className="input" />
-                <input name="contact" placeholder="Email" onChange={handleChange} className="input" />
-                <input name="password" type="password" placeholder="Password" onChange={handleChange} className="input" />
-                <button onClick={sendSignupOtp} className="btn">Send OTP</button>
+                <input name="name" placeholder="Full Name" onChange={handleChange} className="boutique-input" />
+                <input name="contact" placeholder="Email Address" onChange={handleChange} className="boutique-input" />
+                <input name="password" type="password" placeholder="Secure Password" onChange={handleChange} className="boutique-input" />
+                <button onClick={nextToRole} className="boutique-btn">Proceed to Role</button>
               </>
             )}
 
             {mode === "signup" && step === 2 && (
               <>
-                <input placeholder="OTP" onChange={(e) => setOtp(e.target.value)} className="input" />
-                <button onClick={verifySignupOtp} className="btn">Verify & Signup</button>
+                <h2 className="text-xl font-light text-slate-800 mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Define your Identity</h2>
+                <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-6">Joining the MarketZen Ecosystem</p>
+                <RoleSelector />
+                <button onClick={sendSignupOtp} className="boutique-btn">Verify as {form.role}</button>
+                <button onClick={() => setStep(1)} className="w-full mt-6 text-[10px] font-bold text-gray-300 uppercase tracking-widest">Return to Details</button>
+              </>
+            )}
+
+            {mode === "signup" && step === 3 && (
+              <>
+                <p className="mb-8 text-sm text-slate-500 font-medium leading-relaxed italic">A verification essence has been sent to <b>{form.contact}</b></p>
+                <input placeholder="Verification Code" onChange={(e) => setOtp(e.target.value)} className="boutique-input text-center text-lg tracking-[0.5em]" />
+                <button onClick={verifySignupOtp} className="boutique-btn">Complete Acquisition</button>
+                <button onClick={() => setStep(2)} className="w-full mt-6 text-[10px] font-bold text-gray-300 uppercase tracking-widest">Adjust Role</button>
               </>
             )}
 
             {mode === "forgot" && step === 1 && (
               <>
-                <input name="contact" placeholder="Email" onChange={handleChange} className="input" />
-                <button onClick={sendResetOtp} className="btn">Send OTP</button>
+                <input name="contact" placeholder="Registered Email" onChange={handleChange} className="boutique-input" />
+                <button onClick={sendResetOtp} className="boutique-btn">Request Recovery</button>
               </>
             )}
 
             {mode === "forgot" && step === 2 && (
               <>
-                <input placeholder="OTP" onChange={(e) => setOtp(e.target.value)} className="input" />
-                <input name="newPassword" type="password" placeholder="New Password" onChange={handleChange} className="input" />
-                <button onClick={resetPassword} className="btn">Reset Password</button>
+                <input placeholder="Recovery Code" onChange={(e) => setOtp(e.target.value)} className="boutique-input" />
+                <input name="newPassword" type="password" placeholder="New Secret Key" onChange={handleChange} className="boutique-input" />
+                <button onClick={resetPassword} className="boutique-btn">Restore Sovereignty</button>
               </>
             )}
 
-            <p className="mt-6 text-sm cursor-pointer text-cyan-400"
-              onClick={() => switchMode(mode === "login" ? "signup" : "login")}>
-              {mode === "login"
-                ? "New here? Create account"
-                : "Already have an account? Login"}
-            </p>
-          </div>
-
-          {/* RIGHT PANEL */}
-          <div className="w-[420px] flex items-center justify-center bg-[#020616] border-l border-cyan-400/10 relative">
-            <div className={`text-center transition-opacity duration-300 p-8 ${animating ? "opacity-0" : "opacity-100"}`}>
-              <div className="flex justify-center mb-6">
-                <span className="p-4 rounded-full bg-[#fff6eb] shadow-[inset_0_-4px_8px_rgba(0,0,0,0.06)]">
-                  <FiUser className="text-orange-500" size={36} />
-                </span>
-              </div>
-              <h2 className="text-4xl font-extrabold tracking-wider text-white">{rightTitle}</h2>
+            <div className="pt-10 text-center">
+              <p className="text-[10px] font-bold text-[#FBCFE8] uppercase tracking-[0.3em] cursor-pointer hover:text-slate-900 transition-colors"
+                onClick={() => {
+                  setShowGoogleBtn(false);
+                  switchMode(mode === "login" ? "signup" : "login");
+                }}>
+                {mode === "login"
+                  ? "New to Zen? Create a Profile"
+                  : "Known Member? Authenticate Here"}
+              </p>
             </div>
           </div>
         </div>
+
+        {/* RIGHT PANEL: AESTHETIC SPLASH */}
+        <div className="w-full md:w-[400px] bg-slate-900 relative flex items-center justify-center p-12 overflow-hidden">
+           {/* Decorative background flare */}
+           <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-[#FBCFE8]/10 to-transparent opacity-50" />
+           
+           <div className={`text-center space-y-8 relative z-10 transition-all duration-700 ${animating ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}>
+             <div className="flex justify-center">
+                <div className="w-24 h-24 rounded-[2.5rem] bg-white/5 border border-white/10 flex items-center justify-center text-[#C9A84C] shadow-2xl relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-[#FBCFE8]/5 to-transparent translate-y-full group-hover:translate-y-[-100%] transition-transform duration-1000" />
+                  <FiUser size={40} strokeWidth={1} />
+                </div>
+             </div>
+             
+             <div className="space-y-4">
+                <h2 className="text-5xl font-light text-white leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>{rightTitle}</h2>
+                <div className="h-px w-12 bg-[#C9A84C] mx-auto" />
+                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.4em] px-8 leading-relaxed">Defining the standard of boutique luxury.</p>
+             </div>
+           </div>
+
+           {/* Bottom subtle branding */}
+           <div className="absolute bottom-10 text-[8px] font-bold text-white/20 uppercase tracking-[0.8em]">MarketZen • Elite</div>
+        </div>
       </div>
+
       <style>{`
-        .input {
+        .boutique-input {
           width: 100%;
-          padding: 14px 14px;
-          margin-bottom: 12px;
-          background: rgba(255,255,255,0.02);
-          border: 1px solid rgba(34,211,238,0.06);
-          border-radius: 8px;
-          color: #e6eef8;
-          box-shadow: inset 0 1px 0 rgba(255,255,255,0.02), 0 6px 20px rgba(2,6,23,0.6);
+          padding: 18px 24px;
+          background: #FFFFFF;
+          border: 1px solid #F1F5F9;
+          border-radius: 20px;
+          font-family: 'Jost', sans-serif;
+          font-size: 13px;
+          color: #1E293B;
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.01);
         }
 
-        .input::placeholder { color: rgba(226,238,248,0.35); }
-
-        .input:focus {
+        .boutique-input::placeholder { color: #CBD5E1; letter-spacing: 0.05em; font-weight: 400; }
+        
+        .boutique-input:focus {
           outline: none;
-          border-color: rgba(34,211,238,0.95);
-          box-shadow: 0 8px 30px rgba(6,182,212,0.08);
+          border-color: #FBCFE8;
+          box-shadow: 0 15px 40px rgba(251,207,232,0.15);
+          transform: translateY(-2px);
         }
 
-        .btn {
+        .boutique-btn {
           width: 100%;
-          padding: 12px;
-          background: linear-gradient(90deg,#22d3ee,#06b6d4);
-          color: #021022;
+          padding: 20px;
+          background: #0F172A;
+          color: #FFFFFF;
+          font-family: 'Jost', sans-serif;
           font-weight: 700;
-          border-radius: 10px;
-          margin-top: 8px;
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 0.3em;
+          border-radius: 20px;
+          margin-top: 24px;
           cursor: pointer;
-          transition: transform 0.15s ease, box-shadow 0.15s ease;
-          box-shadow: 0 10px 30px rgba(6,182,212,0.12);
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 20px 50px rgba(15,23,42,0.15);
         }
 
-        .btn:hover { transform: translateY(-2px); }
+        .boutique-btn:hover {
+          background: #000000;
+          transform: translateY(-4px);
+          box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+          color: #C9A84C;
+        }
 
-        .link { margin-top: 10px; font-size: 14px; color: #34d7ff; cursor: pointer; }
-
-        .google-wrap > div { display:flex; }
+        .boutique-btn:active { transform: translateY(0); }
       `}</style>
+      
+      {/* ADD CONSTUMER SUPPORT BACK */}
+      <div style={{ position: 'fixed', zIndex: 9999 }}>
+        <SupportChat />
+      </div>
     </div>
   );
 }

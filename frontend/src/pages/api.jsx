@@ -13,7 +13,7 @@ import axios from "axios";
 //   },
 // });
 export const API = axios.create({
-  baseURL: "https://ecommerce-x4vm.onrender.com",
+  baseURL: "http://localhost:4002",
   headers: {
     "Content-Type": "application/json",
   },

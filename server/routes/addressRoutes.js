@@ -235,6 +235,50 @@ router.put("/:addressId/default", protect, async (req, res) => {
 });
 
 /* ============================
+   GET SINGLE ADDRESS
+============================ */
+router.get("/:addressId", protect, async (req, res) => {
+  try {
+    const addr = await Address.findOne({
+      _id: req.params.addressId,
+      user: req.userId,
+    });
+    if (!addr) return res.status(404).json({ message: "Address not found" });
+    res.json(addr);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to load address" });
+  }
+});
+
+/* ============================
+   UPDATE ADDRESS
+============================ */
+router.put("/:addressId", protect, async (req, res) => {
+  try {
+    const { addressId } = req.params;
+    const update = req.body;
+
+    if (update.isDefault) {
+      await Address.updateMany(
+        { user: req.userId },
+        { $set: { isDefault: false } }
+      );
+    }
+
+    const updated = await Address.findOneAndUpdate(
+      { _id: addressId, user: req.userId },
+      update,
+      { new: true }
+    );
+
+    if (!updated) return res.status(404).json({ message: "Address not found" });
+    res.json(updated);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to update address" });
+  }
+});
+
+/* ============================
    DELETE ADDRESS
 ============================ */
 router.delete("/:addressId", protect, async (req, res) => {

@@ -215,7 +215,7 @@ export default function AddAddress() {
         style: { background: "#111", color: "#fff" },
       });
 
-      navigate("/checkout");
+      navigate("/addresses");
     } catch (err) {
       console.error("Save address error:", err.response?.data || err.message);
       toast(err.response?.data?.message || "Failed to save address");
@@ -299,7 +299,7 @@ export default function AddAddress() {
       </button>
 
       <button
-        onClick={() => navigate("/checkout")}
+        onClick={() => navigate("/addresses")}
         className="block w-full mt-4 text-sm text-center text-gray-500 cursor-pointer hover:underline"
       >
         Cancel

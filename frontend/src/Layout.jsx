@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import { Outlet } from "react-router-dom";
+import SupportChat from "./components/SupportChat";
 
 export default function Layout() {
   return (
@@ -9,6 +10,9 @@ export default function Layout() {
 
       {/* PAGE CONTENT WILL LOAD HERE */}
       <Outlet />
+
+      {/* FLOATING SUPPORT CHAT */}
+      <SupportChat />
     </div>
   );
 }

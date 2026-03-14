@@ -13,7 +13,7 @@ export default function SearchBar({ setResults }) {
       return;
     }
 
-    const res = await API.get(`/products/search/${e.target.value}`);
+    const res = await API.get(`/products/search?q=${e.target.value}`);
     setResults(res.data);
   };
 

@@ -3,65 +3,82 @@ import { FaBriefcase, FaStar, FaGift, FaQuestionCircle, FaHeart } from "react-ic
 
 export default function Footer() {
   return (
-    <footer className="mt-20 border-t border-gray-200 bg-gray-50">
-      <div className="grid grid-cols-2 gap-10 px-6 py-12 mx-auto text-sm max-w-7xl md:grid-cols-4 lg:grid-cols-6">
-        
-        <div className="flex flex-col gap-3">
-          <h3 className="text-xs font-bold tracking-wider text-gray-900 uppercase">About</h3>
-          <Link to="/about" className="text-gray-600 hover:text-pink-600">About Us</Link>
-          <Link to="/contact" className="text-gray-600 hover:text-pink-600">Contact Us</Link>
-          <Link to="/careers" className="text-gray-600 hover:text-pink-600">Careers</Link>
-          <Link to="/stories" className="text-gray-600 hover:text-pink-600">Marketzen Stories</Link>
+    <footer className="mt-40 bg-slate-900 text-white overflow-hidden relative">
+      {/* Aesthetic Top Border */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-[#C9A84C]/50 to-transparent" />
+      
+      <div className="max-w-7xl mx-auto px-6 py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 lg:gap-8">
+          
+          {/* Brand Vision */}
+          <div className="lg:col-span-2 space-y-8 pr-12">
+            <div className="space-y-4">
+              <h2 className="text-3xl text-white tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                Market<span className="text-[#C9A84C] italic">Zen</span>
+              </h2>
+              <p className="text-[10px] font-bold text-[#FBCFE8] tracking-[0.4em] uppercase">Shop Smarter. Live Calmer.</p>
+            </div>
+            <p className="text-sm font-light leading-relaxed text-slate-400 max-w-sm italic" style={{ fontFamily: "'Jost', sans-serif" }}>
+              Curating the world's most exquisite beauty, skin, and wellness treasures. We believe luxury is found in the calm, and style is an expression of the soul.
+            </p>
+            <div className="flex gap-6">
+               <a href="#" className="h-10 w-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all">
+                  <FaStar size={14} />
+               </a>
+               <a href="#" className="h-10 w-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all">
+                  <FaHeart size={14} />
+               </a>
+            </div>
+          </div>
+
+          <div className="space-y-8">
+            <h3 className="text-[10px] font-bold tracking-[0.3em] text-[#C9A84C] uppercase">The Collection</h3>
+            <ul className="space-y-4 text-sm font-light text-slate-400" style={{ fontFamily: "'Jost', sans-serif" }}>
+              <li><Link to="/about" className="hover:text-white transition-colors">Elite Story</Link></li>
+              <li><Link to="/contact" className="hover:text-white transition-colors">Boutique Concierge</Link></li>
+              <li><Link to="/careers" className="hover:text-white transition-colors">Curation Careers</Link></li>
+              <li><Link to="/stories" className="hover:text-white transition-colors">Zen Journal</Link></li>
+            </ul>
+          </div>
+
+          <div className="space-y-8">
+            <h3 className="text-[10px] font-bold tracking-[0.3em] text-[#C9A84C] uppercase">Member Services</h3>
+            <ul className="space-y-4 text-sm font-light text-slate-400" style={{ fontFamily: "'Jost', sans-serif" }}>
+              <li><Link to="/payments" className="hover:text-white transition-colors">Payments</Link></li>
+              <li><Link to="/shipping" className="hover:text-white transition-colors">Delivery Logistics</Link></li>
+              <li><Link to="/returns" className="hover:text-white transition-colors">Exchanges</Link></li>
+              <li><Link to="/faq" className="hover:text-white transition-colors">Assistance</Link></li>
+            </ul>
+          </div>
+
+          <div className="space-y-8">
+             <h3 className="text-[10px] font-bold tracking-[0.3em] text-[#C9A84C] uppercase">Privacy & Law</h3>
+             <ul className="space-y-4 text-sm font-light text-slate-400" style={{ fontFamily: "'Jost', sans-serif" }}>
+              <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Charter</Link></li>
+              <li><Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
+              <li><Link to="/security" className="hover:text-white transition-colors">Cyber Sanctuary</Link></li>
+            </ul>
+          </div>
+
         </div>
 
-        <div className="flex flex-col gap-3">
-          <h3 className="text-xs font-bold tracking-wider text-gray-900 uppercase">Help</h3>
-          <Link to="/payments" className="text-gray-600 hover:text-pink-600">Payments</Link>
-          <Link to="/shipping" className="text-gray-600 hover:text-pink-600">Shipping</Link>
-          <Link to="/returns" className="text-gray-600 hover:text-pink-600">Cancellation & Returns</Link>
-          <Link to="/faq" className="text-gray-600 hover:text-pink-600">FAQ</Link>
-        </div>
-
-        <div className="flex flex-col gap-3">
-          <h3 className="text-xs font-bold tracking-wider text-gray-900 uppercase">Policy</h3>
-          <Link to="/privacy" className="text-gray-600 hover:text-pink-600">Privacy Policy</Link>
-          <Link to="/terms" className="text-gray-600 hover:text-pink-600">Terms of Use</Link>
-          <Link to="/security" className="text-gray-600 hover:text-pink-600">Security</Link>
-        </div>
-
-        <div className="flex flex-col gap-3">
-          <h3 className="text-xs font-bold tracking-wider text-gray-900 uppercase">Social</h3>
-          <a href="#" className="text-gray-600 hover:text-pink-600">Instagram</a>
-          <a href="#" className="text-gray-600 hover:text-pink-600">Facebook</a>
-          <a href="#" className="text-gray-600 hover:text-pink-600">Twitter</a>
-        </div>
-
-        <div className="flex flex-col gap-3 pl-8 border-l border-gray-200 lg:col-span-2">
-          <h3 className="text-xs font-bold tracking-wider text-gray-900 uppercase">Registered Office</h3>
-          <p className="text-xs leading-relaxed text-gray-500">
-            Marketzen Internet Private Limited,<br />
-            Buildings Alyssa, Begonia & Clove Embassy Tech Village,<br />
-            Outer Ring Road, Devarabeesanahalli Village,<br />
-            Bengaluru, 560103, Karnataka, India
-          </p>
-        </div>
-      </div>
-
-      <div className="bg-white border-t border-gray-100">
-        <div className="flex flex-wrap items-center justify-between gap-6 px-6 py-8 mx-auto text-xs font-medium text-gray-700 max-w-7xl">
-          <div className="flex gap-8">
-            <span className="flex items-center gap-2 cursor-pointer hover:text-pink-600"><FaBriefcase className="text-pink-500" /> Become a Seller</span>
-            <span className="flex items-center gap-2 cursor-pointer hover:text-pink-600"><FaStar className="text-pink-500" /> Advertise</span>
-            <span className="flex items-center gap-2 cursor-pointer hover:text-pink-600"><FaGift className="text-pink-500" /> Gift Cards</span>
-            <span className="flex items-center gap-2 cursor-pointer hover:text-pink-600"><FaQuestionCircle className="text-pink-500" /> Help Center</span>
+        <div className="mt-24 pt-10 border-t border-slate-800/50 flex flex-col md:flex-row items-center justify-between gap-10">
+          <div className="flex flex-wrap items-center justify-center gap-10 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">
+            <span className="flex items-center gap-3 cursor-pointer hover:text-[#C9A84C] transition-colors"><FaBriefcase /> Partnership</span>
+            <span className="flex items-center gap-3 cursor-pointer hover:text-[#C9A84C] transition-colors"><FaStar /> Marketing</span>
+            <span className="flex items-center gap-3 cursor-pointer hover:text-[#C9A84C] transition-colors"><FaGift /> Gifting</span>
+            <span className="flex items-center gap-3 cursor-pointer hover:text-[#C9A84C] transition-colors"><FaQuestionCircle /> Sanctuary Help</span>
           </div>
           
-          <div className="flex items-center gap-4">
-            <p>© {new Date().getFullYear()} Marketzen.com</p>
-            <img src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/payment-method-c454fb.svg" alt="Payments" className="opacity-70" />
+          <div className="flex flex-col items-center md:items-end gap-4">
+            <p className="text-[10px] font-medium text-slate-500 tracking-widest">© {new Date().getFullYear()} MarketZen International</p>
+            <img src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/payment-method-c454fb.svg" alt="Payments" className="opacity-30 grayscale invert" />
           </div>
         </div>
       </div>
+      
+      {/* Gradient Decoration */}
+      <div className="absolute bottom-0 right-0 w-[30%] h-[30%] bg-[#C9A84C]/5 rounded-full blur-[120px] -mr-[15%] -mb-[15%]" />
     </footer>
   );
-}
+}
