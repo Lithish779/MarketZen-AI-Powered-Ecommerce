@@ -23,17 +23,6 @@ function fileToGenerativePart(filePath, mimeType) {
   };
 }
 
-/* ================= DEBUG MODELS ================= */
-router.get("/debug-models", async (req, res) => {
-  try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${process.env.GEMINI_API_KEY || "AIzaSyDgDo-fnEoJn-lNe0Oe817076eh5qRl6d8"}`);
-    const data = await response.json();
-    res.json(data);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
 /* ================= AI BEAUTY ASSISTANT ================= */
 router.post("/chat", async (req, res) => {
   const { message, userId, history = [] } = req.body;
@@ -67,7 +56,7 @@ ${contextString}
 If a user asks for something not in the context, recommend the closest match or suggest they browse our full collection.
 Keep responses concise and ultra-premium in tone.`;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash", systemInstruction });
     
     const formattedHistory = history.map(h => ({
       role: h.role === "assistant" ? "model" : "user",
@@ -105,7 +94,7 @@ Output ONLY the raw JSON object, NO markdown formatting, NO backticks.
 Example: "Gifts under 1000" -> {"maxPrice": 1000}
 Example: "Oily skin moisturizer" -> {"category": "moisturizer", "q": "oily skin"}`;
     
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash", systemInstruction });
     const result = await model.generateContent(q);
     let text = result.response.text();
     text = text.replace(/```json/gi, "").replace(/```/g, "").trim();
@@ -145,7 +134,7 @@ Be professional, supportive, and luxury-boutique in tone.
 Include a JSON block at the end with keys: "skinType", "concerns" (array), "routine" (array).
 Do not enclose the final JSON block in markdown backticks if possible, just pure text and JSON.`;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash", systemInstruction });
     const result = await model.generateContent(["Please analyze my skin and provide expert recommendations.", imagePart]);
     
     if (fs.existsSync(imagePath)) fs.unlinkSync(imagePath);
@@ -204,7 +193,7 @@ Summarize the following customer reviews for a product in 2-3 concise, high-impa
 Highlight what customers love and any common complaints. 
 Tone: Professional, honest, and helpful.`;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash", systemInstruction });
     const result = await model.generateContent(`Please summarize these reviews:\n${reviewText}`);
 
     res.json({ summary: result.response.text() });
@@ -250,7 +239,7 @@ Output ONLY a JSON array of product IDs and a short "architectsNote".
 Example: {"productIds": ["id1", "id2"], "architectsNote": "A minimalist glow regimen."}
 Output ONLY the raw JSON string, NO markdown blocks, NO backticks.`;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash", systemInstruction });
     const result = await model.generateContent(`Catalog:\n${productList}\n\nUser Profile: ${skinType}, ${concerns?.join(', ')}`);
     
     let text = result.response.text();
@@ -295,7 +284,7 @@ Return ONLY a JSON object with:
 - "advice": 1-sentence tip on application.
 NO markdown formatting, NO backticks.`;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash", systemInstruction });
     const result = await model.generateContent(["What is my perfect shade match?", imagePart]);
     
     fs.unlinkSync(productImage);
@@ -330,7 +319,7 @@ Output ONLY a JSON object:
 }
 NO markdown formatting, NO backticks.`;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash", systemInstruction });
     const result = await model.generateContent(`Analyze these ingredients:\n${ingredients}`);
 
     let text = result.response.text();
