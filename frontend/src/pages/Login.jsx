@@ -57,8 +57,9 @@ export default function Login() {
 
       loginToast("Welcome to MarketZen");
       window.location.href = "/";
-    } catch {
-      loginToast("Access Denied: Invalid Credentials");
+    } catch (err) {
+      const msg = err.response?.data?.msg || "Access Denied: Invalid Credentials";
+      loginToast(msg);
     }
   };
 
@@ -79,8 +80,9 @@ export default function Login() {
 
       loginToast("Aesthetic Entry: Google Verified");
       window.location.href = "/";
-    } catch {
-      loginToast("Google Authentication Failed");
+    } catch (err) {
+      const msg = err.response?.data?.msg || "Google Authentication Failed";
+      loginToast(msg);
     }
   };
 
@@ -100,8 +102,9 @@ export default function Login() {
       });
       loginToast("Verification code dispatched");
       setStep(3); // OTP entry
-    } catch {
-      loginToast("Dispatch Failed");
+    } catch (err) {
+      const msg = err.response?.data?.msg || "Dispatch Failed";
+      loginToast(msg);
     }
   };
 
@@ -117,8 +120,9 @@ export default function Login() {
 
       loginToast("Account Curated Successfully");
       switchMode("login");
-    } catch {
-      loginToast("Invalid Verification Code");
+    } catch (err) {
+      const msg = err.response?.data?.msg || "Invalid Verification Code";
+      loginToast(msg);
     }
   };
 
@@ -153,8 +157,9 @@ export default function Login() {
       });
       loginToast("Code sent");
       setStep(2);
-    } catch {
-      loginToast("Request failed");
+    } catch (err) {
+      const msg = err.response?.data?.msg || "Request failed";
+      loginToast(msg);
     }
   };
 
@@ -173,8 +178,9 @@ export default function Login() {
 
       loginToast("Credentials updated");
       switchMode("login");
-    } catch {
-      loginToast("Update failed");
+    } catch (err) {
+      const msg = err.response?.data?.msg || "Update failed";
+      loginToast(msg);
     }
   };
 
