@@ -30,7 +30,7 @@ const io = new Server(httpServer, {
       "http://localhost:5174",
       "http://localhost:3000",
       "https://ecommerce-7lph.vercel.app",
-      "https://ecommerce-taupe-omega-29.vercel.app"
+      "https://marketgen-ai-ecommerce.vercel.app"
     ],
     methods: ["GET", "POST"],
     credentials: true,
@@ -78,7 +78,7 @@ app.use(cors({
     "http://localhost:5173",
     "http://localhost:5174",
     "https://ecommerce-7lph.vercel.app",
-    "https://ecommerce-taupe-omega-29.vercel.app"
+    "https://marketgen-ai-ecommerce.vercel.app"
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -129,7 +129,7 @@ app.use((err, req, res, next) => {
     "http://localhost:5173",
     "http://localhost:5174",
     "https://ecommerce-7lph.vercel.app",
-    "https://ecommerce-taupe-omega-29.vercel.app"
+    "https://marketgen-ai-ecommerce.vercel.app"
   ].includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Credentials', 'true');

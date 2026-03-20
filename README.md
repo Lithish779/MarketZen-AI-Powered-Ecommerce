@@ -1,10 +1,11 @@
 # 🛍️ MarketZen — Boutique Luxury AI Powered E-Commerce
 
+
 <div align="center">
   <img src="frontend/src/assets/logo.png" alt="MarketZen Logo" width="120" />
   <p><i>Defining the standard of boutique luxury. Shop Smarter, Live Calmer.</i></p>
 
-  [![Vercel](https://img.shields.io/badge/Vercel-Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://ecommerce-taupe-omega-29.vercel.app/)
+  [![Vercel](https://img.shields.io/badge/Vercel-Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://marketgen-ai-ecommerce.vercel.app/)
   [![License](https://img.shields.io/badge/License-MIT-C9A84C?style=for-the-badge)](LICENSE)
 </div>
 
@@ -105,5 +106,5 @@
 
 <div align="center">
   <p>Built with ❤️ for a better shopping experience.</p>
-  <b><a href="https://github.com/Lithish779/Ecommerce">GitHub Repo</a> • <a href="https://ecommerce-taupe-omega-29.vercel.app/">Live Demo</a></b>
+  <b><a href="https://github.com/Lithish779/Ecommerce">GitHub Repo</a> • <a href="https://marketgen-ai-ecommerce.vercel.app/">Live Demo</a></b>
 </div>
