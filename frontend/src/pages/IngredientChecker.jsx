@@ -38,7 +38,7 @@ export default function IngredientChecker() {
              <FaFlask className="text-[#EC4899]" />
              <span className="text-[10px] font-bold text-white uppercase tracking-[0.4em]">Formula Intelligence</span>
           </div>
-          <h1 className="text-6xl text-white font-light leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+          <h1 className="text-4xl md:text-6xl text-white font-light leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
             The Ingredient <span className="text-[#EC4899] italic">Decryptor</span>
           </h1>
           <p className="text-slate-400 text-lg font-light max-w-xl mx-auto">
@@ -99,7 +99,7 @@ export default function IngredientChecker() {
                         {result.verdict === 'Safe' ? <FaCheckCircle /> : <FaExclamationTriangle />}
                         Verdict: {result.verdict}
                       </div>
-                      <h2 className="text-4xl text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
+                      <h2 className="text-3xl md:text-4xl text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
                         Safety Analysis
                       </h2>
                       <p className="text-slate-500 text-sm font-light leading-relaxed italic">
@@ -113,8 +113,8 @@ export default function IngredientChecker() {
                             <path className="text-[#EC4899] transition-all duration-1000" strokeDasharray={`${result.safetyScore}, 100`} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" strokeWidth="2" strokeLinecap="round" />
                          </svg>
                          <div className="absolute inset-0 flex flex-col items-center justify-center">
-                            <span className="text-3xl font-bold text-slate-900">{result.safetyScore}</span>
-                            <span className="text-[8px] font-bold uppercase tracking-widest text-slate-400">Score</span>
+                            <span className="text-2xl md:text-3xl font-bold text-slate-900">{result.safetyScore}</span>
+                            <span className="text-[7px] md:text-[8px] font-bold uppercase tracking-widest text-slate-400">Score</span>
                          </div>
                       </div>
                    </div>
@@ -137,10 +137,10 @@ export default function IngredientChecker() {
                    <div className="bg-slate-900 p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden flex flex-col justify-center">
                       <div className="absolute top-0 right-0 w-32 h-32 bg-[#EC4899]/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
                       <div className="relative z-10 space-y-4">
-                         <h4 className="text-[10px] font-bold text-[#EC4899] uppercase tracking-[0.4em]">Expert Recommendation</h4>
-                         <p className="text-white text-lg font-light italic leading-relaxed">
-                            "Transparency in skincare is absolute. Knowing exactly what touches your dermis is the first step in a professional ritual."
-                         </p>
+                          <h4 className="text-[10px] font-bold text-[#EC4899] uppercase tracking-[0.4em]">Expert Recommendation</h4>
+                          <p className="text-white text-base md:text-lg font-light italic leading-relaxed">
+                             "Transparency in skincare is absolute. Knowing exactly what touches your dermis is the first step in a professional ritual."
+                          </p>
                       </div>
                    </div>
                 </div>

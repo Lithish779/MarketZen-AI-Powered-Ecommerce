@@ -77,10 +77,10 @@ export default function OrdersPage() {
 
   return (
     <div className="bg-[#FAFAFA] min-h-screen">
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="mb-16">
-          <h1 className="text-5xl font-light text-slate-900 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Order History</h1>
-          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] mt-4">Tracking your curated treasures</p>
+      <div className="max-w-6xl mx-auto px-6 py-10 md:py-16">
+        <div className="mb-10 md:mb-16">
+          <h1 className="text-3xl md:text-5xl font-light text-slate-900 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Order History</h1>
+          <p className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] mt-2 md:mt-4">Tracking your curated treasures</p>
         </div>
 
         <div className="space-y-12">
@@ -94,7 +94,7 @@ export default function OrdersPage() {
               className="group bg-white rounded-[2rem] border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)] overflow-hidden hover:shadow-[0_20px_60px_rgba(0,0,0,0.05)] transition-all duration-700"
             >
               {/* Header: Pure Luxury Look */}
-              <div className="p-8 border-b border-gray-50 flex flex-wrap items-center justify-between gap-6">
+              <div className="p-6 md:p-8 border-b border-gray-50 flex flex-wrap items-center justify-between gap-6">
                 <div className="flex items-center gap-6">
                   <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-slate-900 group-hover:bg-[#FBCFE8]/10 transition-colors duration-500">
                     <Package size={22} strokeWidth={1.5} />
@@ -123,7 +123,7 @@ export default function OrdersPage() {
               </div>
 
               {/* Selection Details */}
-              <div className="p-8 bg-gray-50/20">
+              <div className="p-6 md:p-8 bg-gray-50/20">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-6">
                     {order.items.map((item, i) => (
@@ -155,10 +155,10 @@ export default function OrdersPage() {
                          </p>
                        </div>
                     </div>
-                    <div className="pt-4 border-t border-gray-50">
-                       <p className="text-[9px] text-gray-400 uppercase tracking-[0.2em] font-bold mb-1">Total Valuation</p>
-                       <p className="text-3xl font-normal text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>₹{order.total}</p>
-                    </div>
+                     <div className="pt-4 border-t border-gray-50">
+                        <p className="text-[9px] text-gray-400 uppercase tracking-[0.2em] font-bold mb-1">Total Valuation</p>
+                        <p className="text-2xl md:text-3xl font-normal text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>₹{order.total}</p>
+                     </div>
                   </div>
                 </div>
               </div>

@@ -45,32 +45,32 @@ export default function WishlistPage() {
 
   return (
     <div className="bg-[#FAFAFA] min-h-screen">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="flex items-baseline justify-between mb-16">
+      <div className="max-w-7xl mx-auto px-6 py-10 md:py-16">
+        <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-8 md:mb-16 gap-4">
           <div>
-            <h1 className="text-5xl font-light text-slate-900 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Curated Desires</h1>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] mt-4">{wishlist.length} Treasures Awaiting Acquisition</p>
+            <h1 className="text-3xl md:text-5xl font-light text-slate-900 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Curated Desires</h1>
+            <p className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] mt-2 md:mt-4">{wishlist.length} Treasures Awaiting Acquisition</p>
           </div>
         </div>
 
         {wishlist.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-32 px-6 text-center">
-            <div className="w-20 h-20 bg-white shadow-sm rounded-full flex items-center justify-center text-gray-200 mb-8 border border-gray-50">
-              <Heart size={32} strokeWidth={1} />
+          <div className="flex flex-col items-center justify-center py-20 md:py-32 px-6 text-center">
+            <div className="w-16 h-16 md:w-20 md:h-20 bg-white shadow-sm rounded-full flex items-center justify-center text-gray-200 mb-6 md:mb-8 border border-gray-50">
+              <Heart size={24} md:size={32} strokeWidth={1} />
             </div>
-            <h2 className="text-3xl font-light text-slate-900 mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Your collection is a blank canvas</h2>
-            <p className="text-sm text-gray-400 max-w-sm font-medium leading-relaxed" style={{ fontFamily: "'Jost', sans-serif" }}>
+            <h2 className="text-2xl md:text-3xl font-light text-slate-900 mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Your collection is a blank canvas</h2>
+            <p className="text-[12px] md:text-sm text-gray-400 max-w-sm font-medium leading-relaxed" style={{ fontFamily: "'Jost', sans-serif" }}>
               Save the masterpieces that resonate with you. They will be curated here for your eventual acquisition.
             </p>
             <Link 
               to="/" 
-              className="mt-10 bg-slate-900 text-white px-10 py-5 rounded-2xl text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-black transition-all shadow-2xl shadow-slate-200"
+              className="mt-8 md:mt-10 bg-slate-900 text-white px-8 py-4 md:px-10 md:py-5 rounded-2xl text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-black transition-all shadow-2xl shadow-slate-200"
             >
               Begin Discovery
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-10">
             {wishlist.map((product) => (
               <motion.div
                 layout
@@ -98,7 +98,7 @@ export default function WishlistPage() {
                 </div>
 
                 {/* Content Section */}
-                <div className="p-8">
+                <div className="p-4 md:p-8">
                   <div className="mb-6">
                     <div className="flex items-center gap-2 mb-2">
                        <p className="text-[9px] font-bold text-[#C9A84C] uppercase tracking-widest leading-none">{product.category}</p>

@@ -26,23 +26,23 @@ const NotificationItem = ({ type, title, message, time, isRead }) => {
     <motion.div 
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`relative p-6 rounded-[32px] bg-white border ${isRead ? 'border-gray-50' : 'border-pink-100 shadow-sm shadow-pink-50'} flex gap-6 items-start transition-all hover:shadow-md group`}
+      className={`relative p-5 md:p-6 rounded-[2rem] md:rounded-[32px] bg-white border ${isRead ? 'border-gray-50' : 'border-pink-100 shadow-sm shadow-pink-50'} flex gap-4 md:gap-6 items-start transition-all hover:shadow-md group`}
     >
-      <div className={`w-14 h-14 rounded-2xl flex-shrink-0 flex items-center justify-center transition-transform group-hover:scale-110 ${config.color} ${config.border} border`}>
-        <Icon size={24} />
+      <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex-shrink-0 flex items-center justify-center transition-transform group-hover:scale-110 ${config.color} ${config.border} border`}>
+        <Icon size={20} md:size={24} />
       </div>
       
-      <div className="flex-grow">
-        <div className="flex justify-between items-start gap-4 mb-1">
-          <h3 className={`font-black tracking-tight ${isRead ? 'text-gray-900' : 'text-gray-900 font-black'}`}>
+      <div className="flex-grow min-w-0">
+        <div className="flex justify-between items-start gap-3 mb-1">
+          <h3 className={`font-black tracking-tight text-sm md:text-base truncate ${isRead ? 'text-gray-900' : 'text-gray-900 font-black'}`}>
             {title}
             {!isRead && <span className="inline-block w-2 h-2 rounded-full bg-pink-500 ml-2 mb-0.5"></span>}
           </h3>
-          <span className="text-[10px] font-black text-gray-400 flex items-center gap-1 whitespace-nowrap uppercase tracking-widest">
-            <Clock size={12} /> {time}
+          <span className="text-[9px] md:text-[10px] font-black text-gray-400 flex items-center gap-1 whitespace-nowrap uppercase tracking-widest shrink-0">
+            <Clock size={10} md:size={12} /> {time}
           </span>
         </div>
-        <p className="text-sm text-gray-500 font-medium leading-relaxed">{message}</p>
+        <p className="text-xs md:text-sm text-gray-500 font-medium leading-relaxed line-clamp-2 md:line-clamp-none">{message}</p>
       </div>
 
       <button className="text-gray-300 hover:text-gray-600 transition-colors p-2">
@@ -93,18 +93,18 @@ export default function NotificationsPage() {
       <div className="max-w-4xl mx-auto">
         
         {/* Header */}
-        <div className="flex items-center justify-between mb-10">
+        <div className="flex flex-wrap items-center justify-between gap-6 mb-8 md:mb-10">
           <div>
             <div className="flex items-center gap-4 mb-2">
                 <div className="w-10 h-10 bg-gray-900 text-white rounded-xl flex items-center justify-center shadow-lg shadow-gray-200">
                     <Bell size={20} />
                 </div>
-                <h1 className="text-4xl font-black text-gray-900 tracking-tight">Center</h1>
+                <h1 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Center</h1>
             </div>
-            <p className="text-sm text-gray-400 font-black uppercase tracking-[0.2em]">Stay updated with your activity</p>
+            <p className="text-[9px] md:text-sm text-gray-400 font-black uppercase tracking-[0.2em]">Stay updated with your activity</p>
           </div>
-          <button className="w-12 h-12 bg-white border border-gray-100 rounded-2xl flex items-center justify-center text-gray-400 hover:text-black transition-all hover:shadow-sm">
-            <Settings size={20} />
+          <button className="w-10 h-10 md:w-12 md:h-12 bg-white border border-gray-100 rounded-xl md:rounded-2xl flex items-center justify-center text-gray-400 hover:text-black transition-all hover:shadow-sm">
+            <Settings size={18} md:size={20} />
           </button>
         </div>
 
@@ -128,8 +128,8 @@ export default function NotificationsPage() {
         </div>
 
         {/* Load More */}
-        <div className="mt-12 text-center">
-            <button className="px-10 py-4 bg-white border border-gray-100 text-gray-400 rounded-[32px] text-xs font-black uppercase tracking-widest hover:bg-gray-50 hover:text-black transition-all">
+        <div className="mt-10 md:mt-12 text-center">
+            <button className="px-8 md:px-10 py-4 bg-white border border-gray-100 text-gray-400 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest hover:bg-gray-50 hover:text-black transition-all">
                 Load Older Notifications
             </button>
         </div>

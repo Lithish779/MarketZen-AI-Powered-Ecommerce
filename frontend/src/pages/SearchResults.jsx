@@ -48,17 +48,17 @@ export default function SearchResults() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-20">
+      <div className="max-w-7xl mx-auto px-6 py-10 md:py-20">
         {/* HEADER */}
-        <div className="mb-20 space-y-6">
+        <div className="mb-12 md:mb-20 space-y-4 md:space-y-6">
           <div className="flex items-center gap-4">
-             <div className="h-px w-12 bg-[#FBCFE8]" />
-             <p className="text-[10px] font-bold text-[#C9A84C] uppercase tracking-[0.4em]">Curated Discovery</p>
+             <div className="h-px w-10 md:w-12 bg-[#FBCFE8]" />
+             <p className="text-[9px] md:text-[10px] font-bold text-[#C9A84C] uppercase tracking-[0.4em]">Curated Discovery</p>
           </div>
-          <h1 className="text-5xl lg:text-6xl text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
+          <h1 className="text-3xl md:text-5xl lg:text-6xl text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
             Results for: <span className="italic">"{query}"</span>
           </h1>
-          <p className="text-gray-400 text-sm font-light tracking-wide italic max-w-xl">
+          <p className="text-gray-400 text-xs md:text-sm font-light tracking-wide italic max-w-xl">
             Refining our global collection to present only the treasures that match your unique search.
           </p>
         </div>
@@ -72,7 +72,7 @@ export default function SearchResults() {
             <Link to="/" className="inline-block px-12 py-5 bg-black text-white rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-all hover:bg-[#C9A84C] shadow-2xl">Return to Gallery</Link>
           </div>
         ) : (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-20">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-x-10 md:gap-y-20">
             {products.map((item) => (
               <ProductCard key={item._id} product={item} />
             ))}

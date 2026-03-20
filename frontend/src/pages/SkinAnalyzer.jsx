@@ -50,7 +50,7 @@ const SkinAnalyzer = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#FAFAFA] pt-32 pb-20 px-6">
+        <div className="min-h-screen bg-[#FAFAFA] pt-24 md:pt-32 pb-12 md:pb-20 px-6">
             <div className="max-w-4xl mx-auto">
                 {/* Header */}
                 <div className="text-center mb-16 space-y-4">
@@ -58,7 +58,7 @@ const SkinAnalyzer = () => {
                         <FaMagic className="text-[#EC4899] text-sm animate-pulse" />
                         <span className="text-[10px] font-bold text-[#EC4899] uppercase tracking-[0.3em]">Advanced Skin Intelligence</span>
                     </div>
-                    <h1 className="text-5xl text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    <h1 className="text-3xl md:text-5xl text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
                         AI Skin <span className="text-[#C9A84C] italic">Analyzer</span>
                     </h1>
                     <p className="text-gray-400 font-light max-w-lg mx-auto leading-relaxed">
@@ -70,7 +70,7 @@ const SkinAnalyzer = () => {
                     {/* Upload Section */}
                     <div className="space-y-8">
                         <div 
-                            className={`relative group h-[500px] rounded-[3rem] border-2 border-dashed transition-all duration-700 overflow-hidden flex flex-col items-center justify-center bg-white shadow-2xl shadow-slate-200/50 ${
+                            className={`relative group h-[350px] md:h-[500px] rounded-[2rem] md:rounded-[3rem] border-2 border-dashed transition-all duration-700 overflow-hidden flex flex-col items-center justify-center bg-white shadow-2xl shadow-slate-200/50 ${
                                 preview ? "border-transparent" : "border-gray-200 hover:border-[#C9A84C]/50 hover:bg-gray-50/50"
                             }`}
                         >
@@ -148,7 +148,7 @@ const SkinAnalyzer = () => {
                         ) : result ? (
                             <div className="space-y-8 animate-fadeIn">
                                 {/* Analysis Content */}
-                                <div className="bg-white p-10 rounded-[3rem] shadow-xl border border-gray-50 space-y-8">
+                                <div className="bg-white p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-xl border border-gray-50 space-y-6 md:space-y-8">
                                     <div className="flex items-center gap-4">
                                         <div className="w-12 h-12 bg-green-50 text-green-500 rounded-2xl flex items-center justify-center">
                                             <FaCheckCircle size={24} />

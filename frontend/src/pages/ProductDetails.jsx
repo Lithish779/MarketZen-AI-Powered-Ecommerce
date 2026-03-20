@@ -113,12 +113,12 @@ export default function ProductDetails() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-12 lg:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+      <div className="max-w-7xl mx-auto px-6 py-8 md:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 lg:gap-24 items-start">
           
           {/* IMAGE SECTION */}
           <div className="lg:col-span-7 group">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-gray-50 shadow-2xl shadow-black/5 border border-gray-100">
+            <div className="relative aspect-[1/1] sm:aspect-[4/5] overflow-hidden rounded-2xl md:rounded-3xl bg-gray-50 shadow-2xl shadow-black/5 border border-gray-100">
               <img
                 src={product.image}
                 alt={product.name}
@@ -126,13 +126,13 @@ export default function ProductDetails() {
               />
               <button 
                 onClick={handleToggleWishlist}
-                className={`absolute top-6 right-6 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-500 shadow-2xl z-20 ${
+                className={`absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-500 shadow-2xl z-20 ${
                   isFavorite ? "bg-[#EC4899] scale-110 shadow-[#EC4899]/40" : "bg-[#FBCFE8] scale-100 hover:scale-110"
                 }`}
               >
                 <FaHeart 
-                  size={24} 
-                  className="transition-all duration-500"
+                  size={isFavorite ? 18 : 16} 
+                  className="transition-all duration-500 md:w-6 md:h-6"
                   fill={isFavorite ? "#C9A84C" : "white"} 
                   stroke={isFavorite ? "#C9A84C" : "white"}
                   strokeWidth={isFavorite ? 0 : 2.5} 
@@ -151,7 +151,7 @@ export default function ProductDetails() {
                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">(4.8 / 112 Reviews)</span>
               </div>
 
-              <h1 className="text-4xl lg:text-5xl leading-tight text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
+              <h1 className="text-3xl md:text-5xl leading-tight text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
                 {product.name}
               </h1>
               
@@ -159,13 +159,13 @@ export default function ProductDetails() {
                 {product.brand || "MarketZen Elite Selection"}
               </p>
 
-              <div className="flex items-baseline gap-4 mt-8">
-                <span className="text-4xl font-light text-slate-900" style={{ fontFamily: "'Jost', sans-serif" }}>₹{product.price}</span>
-                <span className="text-lg text-gray-300 line-through">₹{Math.round(product.price * 1.2)}</span>
-                <span className="text-xs font-bold text-green-500 bg-green-50 px-2.5 py-1 rounded-full uppercase tracking-tighter">Save 20%</span>
+              <div className="flex items-baseline gap-4 mt-6 md:mt-8">
+                <span className="text-3xl md:text-4xl font-light text-slate-900" style={{ fontFamily: "'Jost', sans-serif" }}>₹{product.price}</span>
+                <span className="text-base md:text-lg text-gray-300 line-through">₹{Math.round(product.price * 1.2)}</span>
+                <span className="text-[10px] md:text-xs font-bold text-green-500 bg-green-50 px-2 md:px-2.5 py-1 rounded-full uppercase tracking-tighter">Save 20%</span>
               </div>
 
-              <div className="h-[1px] w-full bg-gray-100 my-10" />
+              <div className="h-[1px] w-full bg-gray-100 my-6 md:my-10" />
 
               <p className="text-slate-600 leading-relaxed text-sm font-light tracking-wide lg:max-w-md" style={{ fontFamily: "'Jost', sans-serif" }}>
                 {product.description || "Indulge in the purest luxury. This meticulously crafted formulation blends ancient wisdom with modern science to deliver unparalleled results."}
@@ -174,12 +174,12 @@ export default function ProductDetails() {
               {/* AI SUMMARY BOX */}
               <div className="mt-8 relative group">
                 <div className="absolute inset-x-0 -inset-y-2 bg-gradient-to-r from-[#FBCFE8]/10 via-transparent to-[#FBCFE8]/5 blur-xl group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-white/40 backdrop-blur-sm border border-gray-100 p-6 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
+                <div className="relative bg-white/40 backdrop-blur-sm border border-gray-100 p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] shadow-sm hover:shadow-md transition-all">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-8 h-8 rounded-full bg-[#EC4899]/10 flex items-center justify-center text-[#EC4899]">
-                      <FaStar size={12} className="animate-pulse" />
+                      <FaStar size={10} className="md:w-3 md:h-3 animate-pulse" />
                     </div>
-                    <span className="text-[9px] font-bold text-slate-900 uppercase tracking-[0.3em]">AI Sentiment Insight</span>
+                    <span className="text-[8px] md:text-[9px] font-bold text-slate-900 uppercase tracking-[0.3em]">AI Sentiment Insight</span>
                   </div>
                   
                   {isSummarizing ? (
@@ -197,7 +197,7 @@ export default function ProductDetails() {
 
               {/* SHADE FINDER SECTION (Only for Makeup/Skin) */}
               {(product.category === "makeup" || product.category === "skin") && (
-                <div className="mt-8 p-8 border border-[#C9A84C]/20 bg-[#C9A84C]/5 rounded-[2.5rem] space-y-4">
+                <div className="mt-8 p-6 md:p-8 border border-[#C9A84C]/20 bg-[#C9A84C]/5 rounded-[1.5rem] md:rounded-[2.5rem] space-y-4">
                   <div className="flex items-center justify-between">
                     <div className="space-y-1">
                       <h4 className="text-xs font-bold uppercase tracking-widest text-[#C9A84C]">Hues Intelligence</h4>
@@ -243,9 +243,9 @@ export default function ProductDetails() {
                   
                   <button 
                     onClick={handleAddToCart}
-                    className="flex-1 bg-slate-900 text-white rounded-full py-5 px-10 text-xs font-bold uppercase tracking-[0.2em] transition-all duration-500 hover:bg-[#0D0D0D] hover:shadow-2xl hover:shadow-[#FBCFE8]/20 flex items-center justify-center gap-4 group"
+                    className="flex-1 bg-slate-900 text-white rounded-full py-4 md:py-5 px-8 md:px-10 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] transition-all duration-500 hover:bg-[#0D0D0D] hover:shadow-2xl hover:shadow-[#FBCFE8]/20 flex items-center justify-center gap-3 md:gap-4 group"
                   >
-                    <FaShoppingCart className="group-hover:scale-110 transition-transform" />
+                    <FaShoppingCart className="text-xs md:text-sm group-hover:scale-110 transition-transform" />
                     Add to Collection
                   </button>
                 </div>

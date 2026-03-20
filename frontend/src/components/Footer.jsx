@@ -3,15 +3,15 @@ import { FaBriefcase, FaStar, FaGift, FaQuestionCircle, FaHeart } from "react-ic
 
 export default function Footer() {
   return (
-    <footer className="mt-40 bg-slate-900 text-white overflow-hidden relative">
+    <footer className="mt-20 md:mt-40 bg-slate-900 text-white overflow-hidden relative">
       {/* Aesthetic Top Border */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-[#C9A84C]/50 to-transparent" />
       
-      <div className="max-w-7xl mx-auto px-6 py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-6 py-12 md:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 md:gap-16 lg:gap-8">
           
           {/* Brand Vision */}
-          <div className="lg:col-span-2 space-y-8 pr-12">
+          <div className="lg:col-span-2 space-y-6 md:space-y-8 md:pr-12">
             <div className="space-y-4">
               <h2 className="text-3xl text-white tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
                 Market<span className="text-[#C9A84C] italic">Zen</span>
@@ -62,7 +62,7 @@ export default function Footer() {
 
         </div>
 
-        <div className="mt-24 pt-10 border-t border-slate-800/50 flex flex-col md:flex-row items-center justify-between gap-10">
+        <div className="mt-16 md:mt-24 pt-8 md:pt-10 border-t border-slate-800/50 flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="flex flex-wrap items-center justify-center gap-10 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">
             <span className="flex items-center gap-3 cursor-pointer hover:text-[#C9A84C] transition-colors"><FaBriefcase /> Partnership</span>
             <span className="flex items-center gap-3 cursor-pointer hover:text-[#C9A84C] transition-colors"><FaStar /> Marketing</span>

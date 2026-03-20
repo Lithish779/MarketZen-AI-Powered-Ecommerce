@@ -167,18 +167,18 @@ export default function Checkout() {
 
   return (
     <div className="bg-[#FAFAFA] min-h-screen">
-      <div className="max-w-7xl px-6 py-16 mx-auto">
-        <h1 className="mb-12 text-5xl font-light text-slate-900 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Checkout</h1>
+      <div className="max-w-7xl px-6 py-10 md:py-16 mx-auto">
+        <h1 className="mb-8 md:mb-12 text-3xl md:text-5xl font-light text-slate-900 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Checkout</h1>
 
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           {/* Main Checkout Sections */}
           <div className="lg:col-span-2 space-y-12">
             
             {/* 1. Address Selection */}
-            <section className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-              <div className="flex items-center gap-4 mb-8">
+            <section className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100">
+              <div className="flex items-center gap-4 mb-6 md:mb-8">
                 <span className="w-8 h-8 rounded-full bg-[#FBCFE8] flex items-center justify-center text-[10px] font-bold text-white uppercase">01</span>
-                <h2 className="text-2xl font-normal text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>Delivery Destination</h2>
+                <h2 className="text-xl md:text-2xl font-normal text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>Delivery Destination</h2>
               </div>
 
               {loadingAddresses && (
@@ -226,10 +226,10 @@ export default function Checkout() {
             </section>
 
             {/* 2. Payment Method */}
-            <section className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-              <div className="flex items-center gap-4 mb-8">
+            <section className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100">
+              <div className="flex items-center gap-4 mb-6 md:mb-8">
                 <span className="w-8 h-8 rounded-full bg-[#FBCFE8] flex items-center justify-center text-[10px] font-bold text-white uppercase">02</span>
-                <h2 className="text-2xl font-normal text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>Payment Experience</h2>
+                <h2 className="text-xl md:text-2xl font-normal text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>Payment Experience</h2>
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -263,12 +263,12 @@ export default function Checkout() {
 
           {/* Sidebar: Order Summary */}
           <div className="lg:col-span-1">
-            <div className="sticky top-28 bg-white rounded-3xl p-10 shadow-[0_30px_70px_rgba(0,0,0,0.05)] border border-gray-50 overflow-hidden">
+            <div className="sticky top-28 bg-white rounded-2xl md:rounded-3xl p-8 md:p-10 shadow-[0_30px_70px_rgba(0,0,0,0.05)] border border-gray-50 overflow-hidden">
               <div className="absolute top-0 right-0 p-3 opacity-5">
                 <h2 className="text-6xl font-bold uppercase rotate-90" style={{ fontFamily: "'Jost', sans-serif" }}>ZEN</h2>
               </div>
 
-              <h2 className="mb-8 text-2xl font-normal text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>Selection Summary</h2>
+              <h2 className="mb-6 md:mb-8 text-xl md:text-2xl font-normal text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>Selection Summary</h2>
 
               <div className="space-y-6 mb-10 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                 {cart.map((item) => (

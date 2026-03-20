@@ -277,7 +277,7 @@ export default function Home() {
           {heroSlides.map((slide, index) => (
             <SwiperSlide key={index}>
               <Link to={slide.link}>
-                <div className="relative h-[480px] w-full cursor-pointer overflow-hidden group">
+                <div className="relative h-[300px] md:h-[480px] w-full cursor-pointer overflow-hidden group">
                   {slide.video ? (
                     <video
                       src={slide.video}
@@ -300,20 +300,20 @@ export default function Home() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="absolute max-w-lg text-white left-14 bottom-14"
+                    className="absolute max-w-lg text-white left-6 bottom-6 md:left-14 md:bottom-14"
                   >
-                    <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#FBCFE8] mb-4">
+                    <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.4em] text-[#FBCFE8] mb-2 md:mb-4">
                       {slide.subtitle}
                     </p>
-                    <h1 className="text-5xl lg:text-6xl font-light leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
                       {slide.title}
                     </h1>
                     <p className="mt-6 text-sm opacity-80 font-light tracking-wide italic max-w-xs" style={{ fontFamily: "'Jost', sans-serif" }}>
                       {slide.desc}
                     </p>
                     
-                    <div className="mt-10">
-                      <span className="inline-block px-10 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-[0.3em] rounded-full group-hover:bg-[#C9A84C] group-hover:text-white transition-colors duration-500">
+                    <div className="mt-6 md:mt-10">
+                      <span className="inline-block px-6 py-3 md:px-10 md:py-4 bg-white text-black text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] rounded-full group-hover:bg-[#C9A84C] group-hover:text-white transition-colors duration-500">
                         Explore Collection
                       </span>
                     </div>
@@ -327,12 +327,12 @@ export default function Home() {
 
       {/* ================= BRAND VIDEOS ================= */}
       <div className="px-6 py-24 mx-auto max-w-7xl">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl lg:text-5xl text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
+        <div className="text-center mb-10 md:mb-16 space-y-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
             Featured Campaigns
           </h2>
           <div className="h-px w-16 bg-[#FBCFE8] mx-auto" />
-          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">Visual Narratives of Style</p>
+          <p className="text-[8px] md:text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">Visual Narratives of Style</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
@@ -351,7 +351,7 @@ export default function Home() {
                   loop
                   muted
                   playsInline
-                  className="object-cover w-full h-[520px] opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+                  className="object-cover w-full h-[350px] md:h-[520px] opacity-80 group-hover:opacity-100 transition-opacity duration-700"
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-8 text-center translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
                   <p className="text-[10px] font-bold text-[#C9A84C] uppercase tracking-[0.4em] mb-2">Exclusive Reveal</p>
@@ -364,55 +364,57 @@ export default function Home() {
       </div>
 
       {/* ================= AI SKIN SECTION ================= */}
-      <div className="px-6 py-24 mx-auto max-w-7xl">
-        <div className="relative overflow-hidden rounded-[4rem] bg-slate-900 h-[500px] flex items-center shadow-2xl">
+      <div className="px-6 py-12 md:py-24 mx-auto max-w-7xl">
+        <div className="relative overflow-hidden rounded-[2rem] md:rounded-[4rem] bg-slate-900 min-h-[400px] md:h-[500px] flex items-center shadow-2xl">
            <div className="absolute inset-0 opacity-40">
               <img 
                 src="https://img.freepik.com/free-photo/beautiful-woman-is-washing-her-face-with-cleansing-foam_329181-12563.jpg" 
                 className="w-full h-full object-cover" 
                 alt="AI Skin Analysis" 
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 md:via-slate-900/80 to-slate-900/60" />
            </div>
 
-           <div className="relative z-10 p-20 max-w-2xl space-y-8">
-              <div className="inline-flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-2.5 rounded-full backdrop-blur-md">
+
+           <div className="relative z-10 p-8 md:p-20 max-w-2xl space-y-6 md:space-y-8">
+              <div className="inline-flex items-center gap-4 bg-white/5 border border-white/10 px-4 py-2 md:px-6 md:py-2.5 rounded-full backdrop-blur-md">
                  <div className="w-2 h-2 rounded-full bg-[#EC4899] animate-pulse" />
-                 <span className="text-[10px] font-bold text-white uppercase tracking-[0.4em]">Next-Gen Intelligence</span>
+                 <span className="text-[8px] md:text-[10px] font-bold text-white uppercase tracking-[0.4em]">Next-Gen Intelligence</span>
               </div>
-              <h2 className="text-6xl text-white font-light leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+              <h2 className="text-4xl md:text-6xl text-white font-light leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
                 Pure Skin <br /> <span className="text-[#C9A84C] italic">Perspective</span>
               </h2>
-              <p className="text-slate-400 text-lg font-light leading-relaxed">
+              <p className="text-slate-400 text-sm md:text-lg font-light leading-relaxed">
                 Unlock the data behind your skin. Our advanced AI vision analyzes your bio-matrix to curate a professional-grade ritual, unique to you.
               </p>
               <Link 
                 to="/skin-analyzer" 
-                className="inline-flex items-center gap-6 group hover:translate-x-2 transition-transform duration-500"
+                className="inline-flex items-center gap-4 md:gap-6 group hover:translate-x-2 transition-transform duration-500"
               >
-                <div className="w-16 h-16 rounded-3xl bg-white flex items-center justify-center text-slate-900 shadow-2xl group-hover:bg-[#C9A84C] group-hover:text-white transition-colors duration-500">
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl md:rounded-3xl bg-white flex items-center justify-center text-slate-900 shadow-2xl group-hover:bg-[#C9A84C] group-hover:text-white transition-colors duration-500">
+                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
-                <span className="text-xs font-bold text-white uppercase tracking-[0.3em]">Launch Analysis</span>
+                <span className="text-[10px] md:text-xs font-bold text-white uppercase tracking-[0.3em]">Launch Analysis</span>
               </Link>
            </div>
         </div>
       </div>
 
       {/* ================= ROUTINE ARCHITECT SECTION ================= */}
-      <div className="px-6 py-24 mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center bg-[#FDFCFB] rounded-[4rem] p-16 border border-gray-100 shadow-xl overflow-hidden relative">
-           <div className="absolute top-0 right-0 w-96 h-96 bg-[#C9A84C]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div className="px-6 py-12 md:py-24 mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center bg-[#FDFCFB] rounded-[2rem] md:rounded-[4rem] p-8 md:p-16 border border-gray-100 shadow-xl overflow-hidden relative">
+           <div className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-[#C9A84C]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+
            
-           <div className="space-y-8 relative z-10">
-              <div className="inline-flex items-center gap-4 bg-white px-6 py-2 rounded-full shadow-sm border border-gray-100">
+            <div className="space-y-6 md:space-y-8 relative z-10">
+              <div className="inline-flex items-center gap-4 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-100">
                  <FaMagic className="text-[#C9A84C]" />
-                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.4em]">Artisan Curation</span>
+                 <span className="text-[8px] md:text-[10px] font-bold text-slate-400 uppercase tracking-[0.4em]">Artisan Curation</span>
               </div>
-              <h2 className="text-5xl text-slate-900 font-light leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+              <h2 className="text-4xl md:text-5xl text-slate-900 font-light leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
                 The Routine <span className="text-[#C9A84C] italic">Architect</span>
               </h2>
-              <p className="text-slate-600 text-lg font-light leading-relaxed">
+              <p className="text-slate-600 text-sm md:text-lg font-light leading-relaxed">
                 Stop guessing. Our AI intelligence curates a professional-grade ritual based on your skin type and concerns, optimized perfectly for your budget. 
               </p>
               
@@ -439,13 +441,12 @@ export default function Home() {
 
               <Link 
                 to="/routine-builder" 
-                className="inline-flex items-center gap-4 bg-slate-900 text-white px-10 py-5 rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#C9A84C] transition-all duration-500 shadow-2xl shadow-slate-200"
+                className="inline-flex items-center justify-center gap-4 bg-slate-900 text-white px-8 py-4 md:px-10 md:py-5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#C9A84C] transition-all duration-500 shadow-2xl shadow-slate-200"
               >
                 Launch Architect <FaArrowRight />
               </Link>
            </div>
-
-           <div className="relative h-[600px] rounded-[3rem] overflow-hidden group">
+           <div className="relative h-[400px] md:h-[600px] rounded-[2rem] md:rounded-[3rem] overflow-hidden group">
               <img 
                 src="https://img.freepik.com/free-photo/cosmetic-bottles-with-chamomile-green-leaves_23-2148181395.jpg" 
                 className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110" 
@@ -457,20 +458,20 @@ export default function Home() {
       </div>
 
       {/* ================= DEALS ================= */}
-      <div className="px-6 py-24 mx-auto max-w-7xl bg-gray-50/50 rounded-[4rem] border border-gray-50 mb-20">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 px-4">
+      <div className="px-6 py-12 md:py-24 mx-auto max-w-7xl bg-gray-50/50 rounded-[2rem] md:rounded-[4rem] border border-gray-50 mb-20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 px-4">
           <div className="space-y-4">
-            <h2 className="text-4xl lg:text-5xl text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
               Treasures of the Season
             </h2>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">Curated Selections with Exceptional Value</p>
+            <p className="text-[8px] md:text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">Curated Selections with Exceptional Value</p>
           </div>
-          <Link to="/category/skin" className="mt-8 md:mt-0 text-[10px] font-bold text-[#C9A84C] uppercase tracking-[0.3em] hover:text-slate-900 transition-colors border-b border-[#C9A84C] pb-1">
+          <Link to="/category/skin" className="mt-6 md:mt-0 text-[10px] font-bold text-[#C9A84C] uppercase tracking-[0.3em] hover:text-slate-900 transition-colors border-b border-[#C9A84C] pb-1 w-fit">
             View All Curations
           </Link>
         </div>
 
-        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4">
+        <div className="grid gap-6 md:gap-10 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-2 md:px-4">
           {deals.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

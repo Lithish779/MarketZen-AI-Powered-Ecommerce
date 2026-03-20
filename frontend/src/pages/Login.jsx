@@ -190,10 +190,10 @@ export default function Login() {
       <div className="relative w-full max-w-5xl bg-white rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.06)] overflow-hidden border border-white flex flex-col md:flex-row">
         
         {/* LEFT PANEL: AUTH FORM */}
-        <div className={`flex-1 p-12 lg:p-16 transition-all duration-700 ${animating ? "opacity-0 translate-y-10" : "opacity-100 translate-y-0"}`}>
-          <div className="mb-12">
-            <h1 className="text-5xl font-light text-slate-900 mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>{mode}</h1>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Accessing the Boutique Collection</p>
+        <div className={`flex-1 p-8 md:p-12 lg:p-16 transition-all duration-700 ${animating ? "opacity-0 translate-y-10" : "opacity-100 translate-y-0"}`}>
+          <div className="mb-8 md:mb-12">
+            <h1 className="text-3xl md:text-5xl font-light text-slate-900 mb-2 md:mb-4 capitalize" style={{ fontFamily: "'Playfair Display', serif" }}>{mode}</h1>
+            <p className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Accessing the Boutique Collection</p>
           </div>
 
           <div className="space-y-6">
@@ -314,11 +314,11 @@ export default function Login() {
                 </div>
              </div>
              
-             <div className="space-y-4">
-                <h2 className="text-5xl font-light text-white leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>{rightTitle}</h2>
-                <div className="h-px w-12 bg-[#C9A84C] mx-auto" />
-                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.4em] px-8 leading-relaxed">Defining the standard of boutique luxury.</p>
-             </div>
+              <div className="space-y-3 md:space-y-4">
+                 <h2 className="text-3xl md:text-5xl font-light text-white leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>{rightTitle}</h2>
+                 <div className="h-px w-10 md:w-12 bg-[#C9A84C] mx-auto" />
+                 <p className="text-[8px] md:text-[10px] text-gray-400 font-bold uppercase tracking-[0.4em] px-4 md:px-8 leading-relaxed">Defining the standard of boutique luxury.</p>
+              </div>
            </div>
 
            {/* Bottom subtle branding */}

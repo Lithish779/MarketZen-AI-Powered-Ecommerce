@@ -15,10 +15,10 @@ export default function Cart() {
 
   return (
     <div className="bg-[#FAFAFA] min-h-screen">
-      <div className="max-w-7xl px-6 py-16 mx-auto">
-        <div className="flex items-baseline justify-between mb-12">
-          <h1 className="text-5xl font-light text-slate-900 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Shopping Selection</h1>
-          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">{cart.length} Masterpieces Selected</p>
+      <div className="max-w-7xl px-6 py-10 md:py-16 mx-auto">
+        <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-8 md:mb-12 gap-2">
+          <h1 className="text-3xl md:text-5xl font-light text-slate-900 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Shopping Selection</h1>
+          <p className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">{cart.length} Masterpieces Selected</p>
         </div>
 
         {cart.length === 0 ? (
@@ -42,9 +42,9 @@ export default function Cart() {
               {cart.map((item) => (
                 <div
                   key={item._id}
-                  className="group flex flex-col md:flex-row items-center gap-8 p-8 bg-white rounded-3xl border border-gray-100 shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-gray-100 hover:-translate-y-1"
+                  className="group flex flex-col md:flex-row items-center gap-6 md:gap-8 p-6 md:p-8 bg-white rounded-2xl md:rounded-3xl border border-gray-100 shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-gray-100 hover:-translate-y-1"
                 >
-                  <div className="relative w-40 h-40 rounded-2xl overflow-hidden border border-gray-50 bg-gray-50 flex-shrink-0">
+                  <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-xl md:rounded-2xl overflow-hidden border border-gray-50 bg-gray-50 flex-shrink-0">
                     <img
                       src={item.image}
                       alt={item.name}
@@ -113,7 +113,7 @@ export default function Cart() {
 
             {/* SELECTION SUMMARY */}
             <div className="lg:col-span-1">
-              <div className="sticky top-28 bg-white rounded-3xl p-10 shadow-[0_30px_70px_rgba(0,0,0,0.05)] border border-gray-50 overflow-hidden">
+              <div className="sticky top-28 bg-white rounded-2xl md:rounded-3xl p-8 md:p-10 shadow-[0_30px_70px_rgba(0,0,0,0.05)] border border-gray-50 overflow-hidden">
                 <div className="absolute top-0 right-0 p-3 opacity-5">
                    <h2 className="text-6xl font-bold uppercase rotate-90" style={{ fontFamily: "'Jost', sans-serif" }}>SELECT</h2>
                 </div>

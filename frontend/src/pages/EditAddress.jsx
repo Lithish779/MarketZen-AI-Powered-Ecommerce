@@ -82,64 +82,83 @@ export default function EditAddress() {
   }
 
   return (
-    <div className="max-w-3xl px-6 py-12 mx-auto">
+    <div className="max-w-3xl px-6 py-10 md:py-16 mx-auto bg-white min-h-screen">
       <button 
         onClick={() => navigate("/addresses")}
-        className="flex items-center gap-2 text-gray-500 hover:text-black mb-8 font-bold text-sm"
+        className="flex items-center gap-2 text-gray-400 hover:text-black mb-8 font-bold text-[10px] uppercase tracking-widest transition-colors"
       >
-        <ArrowLeft size={16} /> Back to Addresses
+        <ArrowLeft size={16} /> Retour
       </button>
 
-      <h1 className="mb-8 text-3xl font-bold">Edit Address</h1>
+      <h1 className="mb-8 md:mb-12 text-3xl md:text-5xl font-light text-slate-900 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Revise Destination</h1>
+      <p className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] mb-8">Update your established map point</p>
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-        <input
-          name="fullName"
-          placeholder="Full Name"
-          value={form.fullName}
-          onChange={handleChange}
-          className="p-3 border rounded-lg"
-        />
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="space-y-1.5">
+          <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest ml-4">Legal Identifier</label>
+          <input
+            name="fullName"
+            placeholder="Full Name"
+            value={form.fullName}
+            onChange={handleChange}
+            className="boutique-input"
+          />
+        </div>
 
-        <input
-          name="phone"
-          placeholder="Phone Number"
-          value={form.phone}
-          onChange={handleChange}
-          className="p-3 border rounded-lg"
-        />
+        <div className="space-y-1.5">
+          <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest ml-4">Phone Number</label>
+          <input
+            name="phone"
+            placeholder="10-digit number"
+            value={form.phone}
+            onChange={handleChange}
+            className="boutique-input"
+          />
+        </div>
 
-        <input
-          name="street"
-          placeholder="Street Address"
-          value={form.street}
-          onChange={handleChange}
-          className="p-3 border rounded-lg md:col-span-2"
-        />
+        <div className="md:col-span-2 space-y-1.5">
+          <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest ml-4">Street Address</label>
+          <input
+            name="street"
+            placeholder="House, Area, Landmark"
+            value={form.street}
+            onChange={handleChange}
+            className="boutique-input"
+          />
+        </div>
 
-        <input
-          name="city"
-          placeholder="City"
-          value={form.city}
-          onChange={handleChange}
-          className="p-3 border rounded-lg"
-        />
+        <div className="space-y-1.5">
+          <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest ml-4">City</label>
+          <input
+            name="city"
+            placeholder="City Name"
+            value={form.city}
+            onChange={handleChange}
+            className="boutique-input"
+          />
+        </div>
 
-        <input
-          name="state"
-          placeholder="State"
-          value={form.state}
-          onChange={handleChange}
-          className="p-3 border rounded-lg"
-        />
+        <div className="space-y-1.5">
+          <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest ml-4">State</label>
+          <input
+            name="state"
+            placeholder="State / Region"
+            value={form.state}
+            onChange={handleChange}
+            className="boutique-input"
+          />
+        </div>
 
-        <input
-          name="pincode"
-          placeholder="Pincode"
-          value={form.pincode}
-          onChange={handleChange}
-          className="p-3 border rounded-lg"
-        />
+        <div className="space-y-1.5">
+          <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest ml-4">Pincode</label>
+          <input
+            name="pincode"
+            placeholder="6-digit PIN"
+            value={form.pincode}
+            onChange={handleChange}
+            className="boutique-input"
+          />
+        </div>
       </div>
 
       <label className="flex items-center gap-3 mt-6">
@@ -157,9 +176,9 @@ export default function EditAddress() {
       <button
         onClick={saveAddress}
         disabled={isSaving}
-        className="w-full py-3 mt-8 text-white bg-black rounded-full hover:bg-gray-800 disabled:opacity-50 font-bold"
+        className="boutique-btn mt-8"
       >
-        {isSaving ? "Updating..." : "Update Address"}
+        {isSaving ? "Updating..." : "Commit Changes"}
       </button>
     </div>
   );

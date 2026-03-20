@@ -66,11 +66,11 @@ export default function SavedAddresses() {
 
   return (
     <div className="bg-[#FAFAFA] min-h-screen">
-      <div className="max-w-5xl mx-auto px-6 py-16">
-        <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-8 mb-16">
+      <div className="max-w-5xl mx-auto px-6 py-10 md:py-16">
+        <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-6 md:gap-8 mb-10 md:mb-16">
           <div>
-            <h1 className="text-5xl font-light text-slate-900 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Delivery Destinations</h1>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] mt-4">Managing your global selection points</p>
+            <h1 className="text-3xl md:text-5xl font-light text-slate-900 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Delivery Destinations</h1>
+            <p className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] mt-2 md:mt-4">Managing your global selection points</p>
           </div>
           <Link 
             to="/add-address" 
@@ -87,13 +87,13 @@ export default function SavedAddresses() {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white rounded-[3rem] p-24 text-center border border-gray-100 shadow-sm"
+                className="bg-white rounded-[2rem] md:rounded-[3rem] p-12 md:p-24 text-center border border-gray-100 shadow-sm"
               >
-                <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center text-gray-200 mx-auto mb-8">
-                  <MapPin size={32} />
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-gray-50 rounded-full flex items-center justify-center text-gray-200 mx-auto mb-6 md:mb-8">
+                  <MapPin size={28} md:size={32} />
                 </div>
-                <h2 className="text-3xl font-light text-slate-900 mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>No destinations mapped</h2>
-                <p className="text-sm text-gray-400 max-w-sm mx-auto font-medium leading-relaxed">Map your first delivery destination to enable our premium express services.</p>
+                <h2 className="text-2xl md:text-3xl font-light text-slate-900 mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>No destinations mapped</h2>
+                <p className="text-[12px] md:text-sm text-gray-400 max-w-sm mx-auto font-medium leading-relaxed">Map your first delivery destination to enable our premium express services.</p>
               </motion.div>
             ) : (
               addresses.map((addr, idx) => (
@@ -104,13 +104,13 @@ export default function SavedAddresses() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ delay: idx * 0.05 }}
                   key={addr._id}
-                  className={`relative group bg-white rounded-[2.5rem] border transition-all duration-700 overflow-hidden ${
+                  className={`relative group bg-white rounded-[2rem] md:rounded-[2.5rem] border transition-all duration-700 overflow-hidden ${
                     addr.isDefault 
                       ? "border-[#FBCFE8]/30 shadow-[0_30px_70px_rgba(251,207,232,0.1)]" 
                       : "border-gray-50 shadow-[0_10px_40px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.05)]"
                   }`}
                 >
-                  <div className="p-10 md:p-12">
+                  <div className="p-6 md:p-10 lg:p-12">
                     <div className="flex items-start justify-between gap-6 mb-10">
                       <div className="flex items-center gap-6">
                         <div className={`w-16 h-16 rounded-[2rem] flex items-center justify-center border transition-all duration-500 ${
@@ -184,7 +184,7 @@ export default function SavedAddresses() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-20 p-12 bg-slate-900 rounded-[3rem] shadow-[0_40px_80px_rgba(0,0,0,0.15)] relative overflow-hidden group">
+        <div className="mt-12 md:mt-20 p-8 md:p-12 bg-slate-900 rounded-[2rem] md:rounded-[3rem] shadow-[0_40px_80px_rgba(0,0,0,0.15)] relative overflow-hidden group">
            {/* Decorative flare */}
            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#FBCFE8]/10 to-transparent rounded-full -mr-48 -mt-48 blur-3xl opacity-50 group-hover:opacity-70 transition-opacity duration-700"></div>
            

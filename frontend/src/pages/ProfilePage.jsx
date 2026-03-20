@@ -39,16 +39,16 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#FAFAFA] py-10 md:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         {/* Header section: Luxury Identity */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-[2.5rem] shadow-[0_10px_60px_rgba(0,0,0,0.03)] border border-gray-50 p-10 md:p-16 mb-12 relative overflow-hidden group"
+          className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-[0_10px_60px_rgba(0,0,0,0.03)] border border-gray-50 p-8 md:p-16 mb-8 md:mb-12 relative overflow-hidden group"
         >
           {/* Subtle brand watermark */}
-          <div className="absolute top-0 right-0 p-6 opacity-[0.03] select-none pointer-events-none">
+          <div className="absolute top-0 right-0 p-6 opacity-[0.03] select-none pointer-events-none hidden md:block">
              <h3 className="text-9xl font-bold uppercase tracking-tighter" style={{ fontFamily: "'Jost', sans-serif" }}>ZEN</h3>
           </div>
 
@@ -65,9 +65,9 @@ const ProfilePage = () => {
             </div>
 
             <div className="text-center md:text-left">
-              <div className="flex flex-col md:flex-row md:items-baseline gap-4 mb-4">
-                 <h1 className="text-5xl font-light text-slate-900 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>{user.name}</h1>
-                 <span className="text-[10px] font-bold text-[#C9A84C] uppercase tracking-[0.3em]" style={{ fontFamily: "'Jost', sans-serif" }}>Elite Resident</span>
+              <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 mb-4">
+                 <h1 className="text-3xl md:text-5xl font-light text-slate-900 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>{user.name}</h1>
+                 <span className="text-[9px] md:text-[10px] font-bold text-[#C9A84C] uppercase tracking-[0.3em]" style={{ fontFamily: "'Jost', sans-serif" }}>Elite Resident</span>
               </div>
               
               <div className="flex flex-wrap justify-center md:justify-start gap-3">
@@ -91,9 +91,9 @@ const ProfilePage = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-white rounded-[2rem] border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)] p-10 h-full"
+            className="bg-white rounded-[1.5rem] md:rounded-[2rem] border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)] p-8 md:p-10 h-full"
           >
-            <h2 className="text-xl font-normal text-slate-900 mb-10 border-b border-gray-50 pb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Account Dossier</h2>
+            <h2 className="text-lg md:text-xl font-normal text-slate-900 mb-8 md:mb-10 border-b border-gray-50 pb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Account Dossier</h2>
             <div className="space-y-8">
               <div className="flex items-center gap-6 group">
                 <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-gray-300 group-hover:bg-[#FBCFE8]/10 group-hover:text-[#FBCFE8] transition-all">
@@ -134,7 +134,7 @@ const ProfilePage = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-slate-900 rounded-[2.5rem] shadow-[0_30px_70px_rgba(0,0,0,0.1)] p-10 text-white h-full relative overflow-hidden flex flex-col"
+            className="bg-slate-900 rounded-[2rem] md:rounded-[2.5rem] shadow-[0_30px_70px_rgba(0,0,0,0.1)] p-8 md:p-10 text-white h-full relative overflow-hidden flex flex-col"
           >
             {/* Holographic accent */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#C9A84C]/20 to-transparent rounded-full -mr-32 -mt-32 blur-3xl opacity-30 animate-pulse"></div>
@@ -150,10 +150,10 @@ const ProfilePage = () => {
                   <FaCoins className="text-[#C9A84C] text-3xl" />
                 </div>
                 <p className="text-[9px] font-bold text-white/40 uppercase tracking-[0.4em] mb-3">Zen Coin Balance</p>
-                <div className="flex items-baseline gap-2">
-                   <p className="text-7xl font-normal tracking-tighter" style={{ fontFamily: "'Playfair Display', serif" }}>{user.superCoins || 0}</p>
-                   <span className="text-[10px] font-bold text-[#C9A84C] uppercase mb-2 animate-bounce">Exclusive</span>
-                </div>
+                 <div className="flex items-baseline gap-2">
+                    <p className="text-5xl md:text-7xl font-normal tracking-tighter" style={{ fontFamily: "'Playfair Display', serif" }}>{user.superCoins || 0}</p>
+                    <span className="text-[9px] md:text-[10px] font-bold text-[#C9A84C] uppercase mb-1 md:mb-2 animate-bounce">Exclusive</span>
+                 </div>
                 <p className="text-[10px] font-bold text-white/60 tracking-[0.3em] uppercase mt-4">DIAMOND MEMBER</p>
               </div>
 

@@ -76,7 +76,7 @@ export default function OrderDetailsPage() {
   ];
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12">
+    <div className="max-w-5xl mx-auto px-6 py-8 md:py-12">
       <Link 
         to="/orders" 
         className="inline-flex items-center gap-2 text-gray-500 hover:text-black mb-10 font-bold text-sm transition-colors group"
@@ -85,15 +85,15 @@ export default function OrderDetailsPage() {
         Back to Orders
       </Link>
 
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 md:mb-12">
         <div>
-          <div className="flex items-center gap-3 mb-2">
-            <h1 className="text-4xl font-black text-gray-900 tracking-tight">Order Details</h1>
-            <span className="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
+          <div className="flex flex-col md:flex-row md:items-center gap-3 mb-2">
+            <h1 className="text-2xl md:text-4xl font-black text-gray-900 tracking-tight">Order Details</h1>
+            <span className="w-fit bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest">
               {order.status}
             </span>
           </div>
-          <p className="text-gray-500 font-medium">Order ID: <span className="text-gray-900">#{order._id.toUpperCase()}</span></p>
+          <p className="text-sm md:text-base text-gray-500 font-medium">Order ID: <span className="text-gray-900">#{order._id.toUpperCase()}</span></p>
         </div>
         <div className="bg-white px-6 py-4 rounded-3xl border border-gray-100 shadow-sm flex items-center gap-4">
           <Calendar className="text-pink-500" size={20} />
@@ -105,8 +105,8 @@ export default function OrderDetailsPage() {
       </div>
 
       {/* Order Status Timeline */}
-      <div className="bg-white p-12 rounded-[40px] border border-gray-100 shadow-sm mb-8 relative overflow-hidden">
-        <div className="relative flex justify-between">
+      <div className="bg-white p-6 md:p-12 rounded-[2rem] md:rounded-[40px] border border-gray-100 shadow-sm mb-8 relative overflow-hidden overflow-x-auto">
+        <div className="relative flex justify-between min-w-[400px]">
           <div className="absolute top-6 left-0 right-0 h-0.5 bg-gray-100 z-0">
             <motion.div 
               initial={{ width: 0 }}
@@ -123,11 +123,11 @@ export default function OrderDetailsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
           {/* Items Section */}
-          <div className="bg-white rounded-[40px] border border-gray-100 shadow-sm overflow-hidden text-sm">
-             <div className="px-8 py-6 border-b border-gray-50 bg-gray-50/30">
-               <h3 className="font-black uppercase tracking-widest text-gray-400 text-xs">Items ({order.items.length})</h3>
+          <div className="bg-white rounded-[2rem] md:rounded-[40px] border border-gray-100 shadow-sm overflow-hidden text-sm">
+             <div className="px-6 md:px-8 py-5 md:py-6 border-b border-gray-50 bg-gray-50/30">
+               <h3 className="font-black uppercase tracking-widest text-gray-400 text-[10px] md:text-xs">Items ({order.items.length})</h3>
              </div>
-             <div className="p-8 space-y-8">
+             <div className="p-6 md:p-8 space-y-6 md:space-y-8">
                {order.items.map((item, i) => (
                  <div key={i} className="flex gap-6 group">
                    <div className="w-24 h-24 bg-gray-50 rounded-3xl overflow-hidden border border-gray-100 flex-shrink-0">
@@ -157,7 +157,7 @@ export default function OrderDetailsPage() {
 
         <div className="space-y-8">
           {/* Shipping Address */}
-          <div className="bg-white p-8 rounded-[40px] border border-gray-100 shadow-sm">
+          <div className="bg-white p-6 md:p-8 rounded-[2rem] md:rounded-[40px] border border-gray-100 shadow-sm">
              <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center">
                   <MapPin size={20} />
@@ -179,7 +179,7 @@ export default function OrderDetailsPage() {
           </div>
 
           {/* Payment Summary */}
-          <div className="bg-gray-900 text-white p-8 rounded-[40px] shadow-xl shadow-gray-200">
+          <div className="bg-gray-900 text-white p-6 md:p-8 rounded-[2rem] md:rounded-[40px] shadow-xl shadow-gray-200">
              <h3 className="font-bold mb-6 flex items-center gap-3">
                <CreditCard size={20} className="text-pink-400" />
                Payment Summary
@@ -210,7 +210,7 @@ export default function OrderDetailsPage() {
              </div>
           </div>
 
-          <button className="w-full bg-white border border-gray-100 p-6 rounded-[40px] font-bold text-gray-600 hover:text-black hover:border-gray-300 transition-all flex items-center justify-center gap-2 shadow-sm">
+          <button className="w-full bg-white border border-gray-100 p-5 md:p-6 rounded-[2rem] md:rounded-[40px] font-bold text-gray-600 hover:text-black hover:border-gray-300 transition-all flex items-center justify-center gap-2 shadow-sm uppercase text-[10px] tracking-widest">
             <ExternalLink size={16} />
             Download Invoice
           </button>

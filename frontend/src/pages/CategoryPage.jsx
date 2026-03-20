@@ -118,10 +118,10 @@ export default function CategoryPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-20">
+      <div className="max-w-7xl mx-auto px-6 py-10 md:py-20">
         {/* Banner or GIFs */}
         {info.gifs ? (
-          <div className="grid grid-cols-1 gap-10 mb-24 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:gap-10 mb-12 md:mb-24 md:grid-cols-3">
             {info.gifs.map((g, i) => (
               <div key={i} className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] shadow-2xl shadow-black/5 border border-gray-100 group">
                 <img src={g} alt={`${info.title} ${i + 1}`} className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-[2s]" />
@@ -131,7 +131,7 @@ export default function CategoryPage() {
           </div>
         ) : (
           info.banner && (
-            <div className="relative h-[480px] mb-24 overflow-hidden rounded-[3rem] shadow-2xl shadow-black/5 border border-gray-100 group">
+            <div className="relative h-[250px] md:h-[480px] mb-12 md:mb-24 overflow-hidden rounded-[1.5rem] md:rounded-[3rem] shadow-2xl shadow-black/5 border border-gray-100 group">
               <img src={info.banner} alt={info.title} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-[4s]" />
               <div className="absolute inset-0 bg-black/10 transition-opacity group-hover:opacity-0" />
             </div>
@@ -139,12 +139,12 @@ export default function CategoryPage() {
         )}
 
         {/* Title Section */}
-        <div className="mb-20 space-y-6">
+        <div className="mb-12 md:mb-20 space-y-4 md:space-y-6">
           <div className="flex items-center gap-4">
              <div className="h-px w-12 bg-[#FBCFE8]" />
              <p className="text-[10px] font-bold text-[#C9A84C] uppercase tracking-[0.4em]">Curated Collection</p>
           </div>
-          <h1 className="text-5xl lg:text-6xl text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
+          <h1 className="text-3xl md:text-5xl lg:text-6xl text-slate-900" style={{ fontFamily: "'Playfair Display', serif" }}>
             {info.title}
           </h1>
           <p className="text-gray-400 text-sm font-light tracking-wide lg:max-w-xl italic">
@@ -162,7 +162,7 @@ export default function CategoryPage() {
             <Link to="/" className="inline-block px-12 py-5 bg-black text-white rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-all hover:bg-[#C9A84C] shadow-2xl">Return to Gallery</Link>
           </div>
         ) : (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-20">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 md:gap-x-10 gap-y-12 md:gap-y-20">
             {products.map((item) => (
               <ProductCard key={item._id} product={item} />
             ))}

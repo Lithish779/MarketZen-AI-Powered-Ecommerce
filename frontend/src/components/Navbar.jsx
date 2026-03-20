@@ -81,30 +81,31 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-full px-6 mx-auto max-w-7xl">
 
           {/* LEFT: PREMIUM LOGO */}
-          <div className="flex items-center h-full min-w-[200px]">
-            <Link to="/" className="flex items-center gap-4 group transition-all duration-500">
+          <div className="flex items-center h-full sm:min-w-[200px]">
+            <Link to="/" className="flex items-center gap-3 md:gap-4 group transition-all duration-500">
               <div className="relative">
                 <img 
                   src={logo} 
                   alt="MarketZen Icon" 
-                  className="h-10 w-10 object-contain transition-transform duration-500 group-hover:scale-110" 
+                  className="h-8 w-8 md:h-10 md:w-10 object-contain transition-transform duration-500 group-hover:scale-110" 
                 />
                 <div className="absolute inset-0 bg-[#EC4899]/5 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               
               <div className="flex flex-col leading-none">
-                <h1 className="text-2xl tracking-tight flex items-center" style={{ fontFamily: "'Playfair Display', serif" }}>
+                <h1 className="text-xl md:text-2xl tracking-tight flex items-center" style={{ fontFamily: "'Playfair Display', serif" }}>
                   <span className="font-normal text-slate-900 uppercase">Market</span>
                   <span className="font-medium italic text-[#C9A84C] ml-1">Zen</span>
                 </h1>
-                <p className="text-[7px] font-bold text-[#FBCFE8] tracking-[0.4em] mt-2 uppercase leading-none">
+                <p className="hidden sm:block text-[7px] font-bold text-[#FBCFE8] tracking-[0.4em] mt-2 uppercase leading-none">
                   Shop Smarter. Live Calmer.
                 </p>
               </div>
             </Link>
           </div>
 
-            <div className="relative flex justify-center flex-1 max-w-2xl px-10" ref={searchRef}>
+          {/* CENTER: SEARCH (HIDDEN ON MOBILE, TOGGLEABLE OR SMALLER) */}
+          <div className="hidden md:flex relative justify-center flex-1 max-w-2xl px-10" ref={searchRef}>
               <div className="flex flex-col w-full gap-2">
                 <div className="relative w-full group">
                   <input
@@ -176,7 +177,10 @@ const Navbar = () => {
           </div>
 
           {/* RIGHT: USER & CART */}
-          <div className="flex items-center gap-8 min-w-[200px] justify-end">
+          <div className="flex items-center gap-3 sm:gap-8 sm:min-w-[200px] justify-end">
+            <button className="md:hidden p-2 text-slate-600 hover:text-[#C9A84C]" onClick={() => setShowSearch(!showSearch)}>
+              <FaSearch />
+            </button>
             {username ? (
               <div className="relative group">
                 <button className="flex items-center gap-3 text-slate-800 hover:text-[#C9A84C] transition-all group-hover:scale-[1.02]">
@@ -228,10 +232,10 @@ const Navbar = () => {
             </Link>
 
             <Link to="/cart" className="relative group">
-              <div className="p-2.5 transition-all rounded-full bg-gray-50 text-[#C9A84C] group-hover:scale-110 group-hover:bg-[#C9A84C]/10 border border-gray-100">
-                <FaShoppingCart className="text-lg" />
+              <div className="p-2 sm:p-2.5 transition-all rounded-full bg-gray-50 text-[#C9A84C] group-hover:scale-110 group-hover:bg-[#C9A84C]/10 border border-gray-100">
+                <FaShoppingCart className="text-base sm:text-lg" />
                 {cartItems && cartItems.length > 0 && (
-                  <span className="absolute -top-1 -right-1 flex items-center justify-center min-w-[20px] h-5 px-1 text-[9px] font-bold text-white bg-[#EC4899] rounded-full ring-2 ring-white shadow-lg">
+                  <span className="absolute -top-1 -right-1 flex items-center justify-center min-w-[16px] sm:min-w-[20px] h-4 sm:h-5 px-1 text-[8px] sm:text-[9px] font-bold text-white bg-[#EC4899] rounded-full ring-2 ring-white shadow-lg">
                     {cartItems.length}
                   </span>
                 )}
@@ -239,12 +243,57 @@ const Navbar = () => {
             </Link>
 
             <button className="p-2 md:hidden text-slate-900 group" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              <div className="w-6 h-0.5 bg-slate-900 mb-1.5 transition-all group-hover:w-4"></div>
-              <div className="w-4 h-0.5 bg-slate-900 mb-1.5 transition-all group-hover:w-6"></div>
-              <div className="w-6 h-0.5 bg-slate-900 transition-all group-hover:w-5"></div>
+              <div className={`w-6 h-0.5 bg-slate-900 mb-1.5 transition-all ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
+              <div className={`w-6 h-0.5 bg-slate-900 mb-1.5 transition-all ${isMenuOpen ? 'opacity-0' : ''}`}></div>
+              <div className={`w-6 h-0.5 bg-slate-900 transition-all ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
             </button>
           </div>
         </div>
+
+        {/* MOBILE SEARCH OVERLAY */}
+        {showSearch && (
+          <div className="md:hidden px-6 py-4 bg-white border-t border-gray-100 animate-in slide-in-from-top duration-300">
+            <div className="relative" ref={searchRef}>
+              <input
+                type="text"
+                placeholder={isAiSearch ? "Ask AI..." : "Search beauty..."}
+                className="w-full h-10 px-10 py-2 text-sm bg-gray-50 border border-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/20"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                autoFocus
+              />
+              <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs" />
+              <button 
+                onClick={() => setIsAiSearch(!isAiSearch)}
+                className={`absolute right-3 top-1/2 -translate-y-1/2 text-[8px] font-bold px-2 py-1 rounded-full ${isAiSearch ? 'bg-[#EC4899] text-white' : 'bg-gray-200 text-gray-500'}`}
+              >
+                AI
+              </button>
+              
+              {searchResults.length > 0 && (
+                <div className="absolute left-0 right-0 z-[100] mt-2 bg-white border border-gray-100 shadow-xl rounded-2xl overflow-hidden">
+                  {searchResults.slice(0, 3).map((product) => (
+                    <button
+                      key={product._id}
+                      onClick={() => {
+                        navigate(`/product/${product._id}`);
+                        setShowSearch(false);
+                        setSearchQuery("");
+                      }}
+                      className="flex items-center w-full gap-3 p-3 hover:bg-gray-50 text-left border-b border-gray-50 last:border-0"
+                    >
+                      <img src={product.image} className="w-10 h-10 object-cover rounded-lg" alt="" />
+                      <div className="flex-1">
+                        <p className="text-xs font-medium text-slate-800 line-clamp-1">{product.name}</p>
+                        <p className="text-[10px] text-slate-500">₹{product.price}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* BOTTOM NAV */}

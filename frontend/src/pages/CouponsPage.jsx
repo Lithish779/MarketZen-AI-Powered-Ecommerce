@@ -36,7 +36,7 @@ const CouponCard = ({ coupon }) => {
       <div className="absolute -right-8 -top-8 w-32 h-32 bg-pink-50 rounded-full blur-3xl opacity-50" />
       <div className="absolute -left-8 -bottom-8 w-32 h-32 bg-blue-50 rounded-full blur-3xl opacity-50" />
       
-      <div className="p-8 relative">
+      <div className="p-6 md:p-8 relative">
         <div className="flex items-start justify-between mb-6">
           <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${
             isExpired ? 'bg-gray-100 text-gray-400' : 'bg-gradient-to-br from-pink-500 to-rose-600 text-white shadow-lg shadow-pink-100'
@@ -53,11 +53,11 @@ const CouponCard = ({ coupon }) => {
           </div>
         </div>
 
-        <div className="mb-8">
-          <h3 className="text-3xl font-black text-gray-900 leading-tight">
+        <div className="mb-6 md:mb-8">
+          <h3 className="text-2xl md:text-3xl font-black text-gray-900 leading-tight">
             {coupon.discountType === 'percentage' ? `${coupon.discountAmount}% OFF` : `₹${coupon.discountAmount} OFF`}
           </h3>
-          <p className="text-gray-500 font-medium mt-1">
+          <p className="text-xs md:text-gray-500 font-medium mt-1">
             Min. purchase of <span className="text-black font-bold">₹{coupon.minPurchase}</span>
           </p>
         </div>
@@ -126,16 +126,16 @@ export default function CouponsPage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-16">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+    <div className="max-w-6xl mx-auto px-6 py-10 md:py-16">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 md:mb-16">
         <div>
           <div className="flex items-center gap-4 mb-4">
-             <div className="w-12 h-12 bg-pink-100 text-pink-600 rounded-2xl flex items-center justify-center">
-               <Tag size={24} />
+             <div className="w-10 h-10 md:w-12 md:h-12 bg-pink-100 text-pink-600 rounded-2xl flex items-center justify-center">
+               <Tag size={20} md:size={24} />
              </div>
-             <h1 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">My Coupons</h1>
+             <h1 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight">My Coupons</h1>
           </div>
-          <p className="text-gray-500 text-lg font-medium max-w-xl">
+          <p className="text-gray-500 text-sm md:text-lg font-medium max-w-xl">
             Save big on your next purchase! Use these exclusive coupon codes at checkout.
           </p>
         </div>
@@ -158,13 +158,13 @@ export default function CouponsPage() {
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="bg-gray-50 rounded-[48px] p-24 text-center border-2 border-dashed border-gray-200"
+            className="bg-gray-50 rounded-[2rem] md:rounded-[48px] p-12 md:p-24 text-center border-2 border-dashed border-gray-200"
           >
-            <div className="w-24 h-24 bg-white rounded-[32px] shadow-sm border border-gray-100 flex items-center justify-center text-gray-200 mx-auto mb-8">
-              <Ticket size={48} />
+            <div className="w-16 h-16 md:w-24 md:h-24 bg-white rounded-[2rem] md:rounded-[32px] shadow-sm border border-gray-100 flex items-center justify-center text-gray-200 mx-auto mb-6 md:mb-8">
+              <Ticket size={32} md:size={48} />
             </div>
-            <h2 className="text-2xl font-black text-gray-900">No coupons found</h2>
-            <p className="text-gray-500 mt-2 font-medium">Keep an eye out! We release new discounts regularly.</p>
+            <h2 className="text-xl md:text-2xl font-black text-gray-900">No coupons found</h2>
+            <p className="text-sm md:text-gray-500 mt-2 font-medium">Keep an eye out! We release new discounts regularly.</p>
           </motion.div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -176,23 +176,23 @@ export default function CouponsPage() {
       </AnimatePresence>
 
       {/* Floating Info Banner */}
-      <div className="mt-20 p-8 rounded-[40px] bg-gradient-to-r from-gray-900 to-black text-white relative overflow-hidden">
+      <div className="mt-12 md:mt-20 p-8 rounded-[2rem] md:rounded-[40px] bg-gradient-to-r from-gray-900 to-black text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 p-4 opacity-10">
           <Ticket size={120} />
         </div>
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <h4 className="text-2xl font-black mb-2 flex items-center gap-3">
+            <h4 className="text-xl md:text-2xl font-black mb-2 flex items-center gap-3">
               <AlertCircle className="text-pink-400" />
               How to use?
             </h4>
-            <p className="text-gray-400 font-medium text-sm">
+            <p className="text-gray-400 font-medium text-xs md:text-sm">
               Simply copy the code of the coupon you'd like to use and paste it into the "Apply Coupon" field during checkout. 
               Only one coupon can be applied per order.
             </p>
           </div>
-          <button className="bg-white text-black px-10 py-5 rounded-2xl font-black hover:bg-pink-500 hover:text-white transition-all transform hover:scale-105 shadow-xl">
-            Start Shopping Now
+          <button className="w-full md:w-fit bg-white text-black px-10 py-4 md:py-5 rounded-2xl font-black hover:bg-pink-500 hover:text-white transition-all transform hover:scale-105 shadow-xl uppercase text-[10px] tracking-widest">
+            Begin Discovery
           </button>
         </div>
       </div>

@@ -42,7 +42,7 @@ export default function RoutineBuilder() {
   return (
     <div className="min-h-screen bg-white">
       {/* HERO SECTION */}
-      <div className="bg-slate-900 text-white py-24 px-6 text-center overflow-hidden relative">
+      <div className="bg-slate-900 text-white py-16 md:py-24 px-6 text-center overflow-hidden relative">
         <div className="absolute inset-0 opacity-20">
           <img 
             src="https://img.freepik.com/free-photo/beauty-spa_144627-46101.jpg" 
@@ -59,10 +59,10 @@ export default function RoutineBuilder() {
              <FaMagic className="text-[#C9A84C]" />
              <span className="text-[10px] font-bold uppercase tracking-[0.4em]">Personalized Curation</span>
           </div>
-          <h1 className="text-6xl font-light leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+          <h1 className="text-4xl md:text-6xl font-light leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
             The Routine <span className="text-[#C9A84C] italic">Architect</span>
           </h1>
-          <p className="text-slate-400 text-lg font-light max-w-xl mx-auto">
+          <p className="text-slate-400 text-sm md:text-lg font-light max-w-xl mx-auto">
             Define your parameters. Our AI intelligence optimizes your ritual for maximum potency within your budget.
           </p>
         </motion.div>
@@ -72,7 +72,7 @@ export default function RoutineBuilder() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* CONFIGURATOR */}
-          <div className="lg:col-span-4 space-y-8 bg-white/80 backdrop-blur-xl border border-gray-100 p-10 rounded-[3rem] shadow-2xl">
+          <div className="lg:col-span-4 space-y-6 md:space-y-8 bg-white/80 backdrop-blur-xl border border-gray-100 p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl">
             {/* Budget */}
             <div className="space-y-6">
               <div className="flex items-center justify-between">
@@ -158,10 +158,10 @@ export default function RoutineBuilder() {
                   exit={{ opacity: 0, x: -20 }}
                   className="space-y-12"
                 >
-                  <div className="bg-gradient-to-br from-[#C9A84C] to-[#A6893B] p-12 rounded-[3rem] text-white shadow-2xl relative overflow-hidden">
+                  <div className="bg-gradient-to-br from-[#C9A84C] to-[#A6893B] p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] text-white shadow-2xl relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
                     <div className="relative z-10 space-y-6">
-                       <h2 className="text-4xl font-light italic" style={{ fontFamily: "'Playfair Display', serif" }}>
+                       <h2 className="text-2xl md:text-4xl font-light italic" style={{ fontFamily: "'Playfair Display', serif" }}>
                          Architect's Notes
                        </h2>
                        <p className="text-lg font-light leading-relaxed max-w-2xl text-white/90">
