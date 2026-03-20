@@ -10,7 +10,7 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showSearch, setShowSearch] = useState(false);
-  const [isAiSearch, setIsAiSearch] = useState(false);
+  const [isAiSearch, setIsAiSearch] = useState(true);
   const navigate = useNavigate();
   const searchRef = useRef(null);
 
