@@ -326,55 +326,6 @@ export default function Login() {
         </div>
       </div>
 
-      <style>{`
-        .boutique-input {
-          width: 100%;
-          padding: 18px 24px;
-          background: #FFFFFF;
-          border: 1px solid #F1F5F9;
-          border-radius: 20px;
-          font-family: 'Jost', sans-serif;
-          font-size: 13px;
-          color: #1E293B;
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 4px 20px rgba(0,0,0,0.01);
-        }
-
-        .boutique-input::placeholder { color: #CBD5E1; letter-spacing: 0.05em; font-weight: 400; }
-        
-        .boutique-input:focus {
-          outline: none;
-          border-color: #FBCFE8;
-          box-shadow: 0 15px 40px rgba(251,207,232,0.15);
-          transform: translateY(-2px);
-        }
-
-        .boutique-btn {
-          width: 100%;
-          padding: 20px;
-          background: #0F172A;
-          color: #FFFFFF;
-          font-family: 'Jost', sans-serif;
-          font-weight: 700;
-          font-size: 11px;
-          text-transform: uppercase;
-          letter-spacing: 0.3em;
-          border-radius: 20px;
-          margin-top: 24px;
-          cursor: pointer;
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 20px 50px rgba(15,23,42,0.15);
-        }
-
-        .boutique-btn:hover {
-          background: #000000;
-          transform: translateY(-4px);
-          box-shadow: 0 25px 60px rgba(0,0,0,0.25);
-          color: #C9A84C;
-        }
-
-        .boutique-btn:active { transform: translateY(0); }
-      `}</style>
       
       {/* ADD CONSTUMER SUPPORT BACK */}
       <div style={{ position: 'fixed', zIndex: 9999 }}>

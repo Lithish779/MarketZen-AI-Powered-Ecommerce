@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 import { FaComments, FaTimes, FaPaperPlane, FaHeadset } from "react-icons/fa";
-import axios from "axios";
+import { API } from "../pages/api.jsx";
 
 const socket = io("https://ecommerce-x4vm.onrender.com");
 
@@ -20,7 +20,7 @@ const SupportChat = () => {
       socket.emit("join_room", activeId);
       
       // Fetch chat history
-      axios.get(`https://ecommerce-x4vm.onrender.com/api/chat/${activeId}`)
+      API.get(`/api/chat/${activeId}`)
         .then(res => setChat(res.data))
         .catch(err => console.error("Error fetching chat:", err));
     }
@@ -64,7 +64,7 @@ const SupportChat = () => {
           content: m.message
         }));
 
-        const res = await axios.post("https://ecommerce-x4vm.onrender.com/api/ai/chat", {
+        const res = await API.post("/api/ai/chat", {
           message: message,
           userId: activeId,
           history: history
@@ -143,7 +143,7 @@ const SupportChat = () => {
         </div>
 
         {/* Messages area */}
-        <div className="h-[350px] overflow-y-auto p-5 bg-gray-50/50 space-y-4">
+        <div className="h-[350px] overflow-y-auto p-5 bg-gray-50/50 space-y-4 no-scrollbar">
           {chat.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center px-6">
               <div className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center mb-4 text-[#C9A84C]">

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import axios from "axios";
+import { API } from "./api.jsx";
 import { FaCamera, FaUpload, FaMagic, FaRobot, FaCheckCircle, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -30,7 +30,7 @@ const SkinAnalyzer = () => {
         formData.append("image", image);
 
         try {
-            const res = await axios.post("https://ecommerce-x4vm.onrender.com/api/ai/analyze-skin", formData, {
+            const res = await API.post("/api/ai/analyze-skin", formData, {
                 headers: { "Content-Type": "multipart/form-data" }
             });
             setResult(res.data);
@@ -94,7 +94,7 @@ const SkinAnalyzer = () => {
                                     </div>
                                     <button 
                                         onClick={() => fileInputRef.current.click()}
-                                        className="px-8 py-4 bg-slate-900 text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-black transition-all shadow-xl shadow-slate-200"
+                                        className="boutique-btn !w-auto !px-10"
                                     >
                                         Select Image
                                     </button>
@@ -113,8 +113,8 @@ const SkinAnalyzer = () => {
                             <button 
                                 onClick={handleAnalyze}
                                 disabled={loading}
-                                className={`w-full py-5 rounded-full text-[11px] font-bold uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-4 ${
-                                    loading ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "bg-[#EC4899] text-white hover:bg-[#D61F69] shadow-2xl shadow-[#EC4899]/30"
+                                className={`boutique-btn !bg-[#EC4899] hover:!bg-[#D61F69] !shadow-[#EC4899]/20 flex items-center justify-center gap-4 ${
+                                    loading ? "!bg-gray-100 !text-gray-400 !cursor-not-allowed" : ""
                                 }`}
                             >
                                 {loading ? (
@@ -123,9 +123,7 @@ const SkinAnalyzer = () => {
                                         Analyzing Skin Matrix...
                                     </>
                                 ) : (
-                                    <>
-                                        Start AI Analysis
-                                    </>
+                                    <>Start AI Analysis</>
                                 )}
                             </button>
                         )}

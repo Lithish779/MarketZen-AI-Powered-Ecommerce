@@ -1,7 +1,67 @@
 @import "tailwindcss";
- body {
-  background: linear-gradient(to bottom right, #faf5ff, #f0f9ff, #ecfdf5);
+
+body {
+  background: linear-gradient(to bottom right, #FAFAFA, #FDF2F8, #F0FDF4);
   background-attachment: fixed;
-} 
+  font-family: 'Jost', sans-serif;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Global Boutique Styles */
+.boutique-input {
+  width: 100%;
+  padding: 14px 20px;
+  background: #FFFFFF;
+  border: 1px solid #F1F5F9;
+  border-radius: 16px;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  color: #1E293B;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+}
+
+.boutique-input:focus {
+  outline: none;
+  border-color: #FBCFE8;
+  box-shadow: 0 10px 30px rgba(251,207,232,0.15);
+  transform: translateY(-1px);
+}
+
+.boutique-btn {
+  width: 100%;
+  padding: 16px;
+  background: #0F172A;
+  color: #FFFFFF;
+  font-family: 'Jost', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 15px 40px rgba(15,23,42,0.12);
+}
+
+.boutique-btn:hover {
+  background: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  color: #C9A84C;
+}
+
+.boutique-btn:active {
+  transform: translateY(0);
+}
 
   

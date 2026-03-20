@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext, useRef } from "react";
-import { FaSearch, FaUser, FaShoppingCart, FaHeart } from "react-icons/fa";
+import { FaSearch, FaUser, FaShoppingCart, FaHeart, FaChevronRight } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import { API } from "../pages/api.jsx";
 import CartContext from "../context/CartContext.jsx";
@@ -28,10 +28,10 @@ const Navbar = () => {
     { name: "Tools", path: "/category/tools" },
     { name: "Mom & Baby", path: "/category/mom-baby" },
     { name: "Wellness", path: "/category/wellness" },
-    { name: "Minis", path: "/category/minis" },
+    { name: "Safe Beauty", path: "/ingredient-checker" },
     { name: "Skin AI", path: "/skin-analyzer" },
     { name: "Routine", path: "/routine-builder" },
-    { name: "Safe Beauty", path: "/ingredient-checker" },
+    { name: "Minis", path: "/category/minis" },
     { name: "Gifts", path: "/category/gifts" },
   ];
 
@@ -205,7 +205,6 @@ const Navbar = () => {
                     <div className="px-2 py-2">
                       <p className="text-[8px] font-bold text-gray-400 uppercase tracking-[0.3em] px-3 mb-2">Member Services</p>
                       <Link to="/profile" className="block px-4 py-2.5 text-xs text-slate-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C] rounded-xl transition-all font-medium">Personal Profile</Link>
-                      <Link to="/profile" className="block px-4 py-2.5 text-xs text-slate-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C] rounded-xl transition-all font-medium">Personal Profile</Link>
                       <Link to="/orders" className="block px-4 py-2.5 text-xs text-slate-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C] rounded-xl transition-all font-medium">My Orders</Link>
                       <Link to="/wishlist" className="block px-4 py-2.5 text-xs text-slate-600 hover:bg-[#C9A84C]/5 hover:text-[#C9A84C] rounded-xl transition-all font-medium">Wishlist</Link>
                     </div>
@@ -297,22 +296,31 @@ const Navbar = () => {
       </div>
 
       {/* BOTTOM NAV */}
-      <div className="hidden md:block bg-white border-t border-gray-50 py-1">
-        <div className="flex items-center justify-center h-12 px-4 mx-auto max-w-7xl">
-          <ul className="flex items-center gap-12">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link
-                  to={link.path}
-                  className="relative py-3 text-[10px] font-bold tracking-[0.25em] text-slate-500 uppercase transition-all duration-300 hover:text-slate-900 group"
-                  style={{ fontFamily: "'Jost', sans-serif" }}
-                >
-                  {link.name}
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-[#C9A84C] transition-all duration-300 group-hover:w-1/2"></span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+      <div className="hidden md:block bg-white border-t border-gray-50 overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-4 relative">
+          {/* Gradient Fades for Scroll */}
+          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          
+          <div className="relative flex items-center h-12">
+            {/* Left fade indicator if needed */}
+            <div className="flex-1 overflow-x-auto no-scrollbar scroll-smooth">
+              <ul className="flex items-center gap-6 lg:gap-8 xl:gap-10 min-w-max">
+                {navLinks.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      to={link.path}
+                      className="relative py-3 text-[10px] xl:text-[11px] font-bold tracking-[0.2em] text-slate-500 uppercase transition-all duration-300 hover:text-slate-900 group whitespace-nowrap"
+                      style={{ fontFamily: "'Jost', sans-serif" }}
+                    >
+                      {link.name}
+                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-[#C9A84C] transition-all duration-300 group-hover:w-full"></span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
